@@ -12,4 +12,4 @@ in com.nubean.xmlespresso eclipse project, which defines an eclipse plugin for a
 The com.nubean.xmlespresso.feature and com.nubean.xmlespresso.site eclipse projects define eclipse Feature 
 and Site respectively.
 
-In order to build these proejcts, first import them in eclipse IDE. Next, first build com.nubean.superior project, followed by com.nubean.xmlespresso, com.nubean.xmlespresso.feature and com.nubean.xmlespresso.site projects, in that order..
+In order to build these proejcts, first import them in eclipse IDE. Next, first build com.nubean.superior project, followed by com.nubean.xmlespresso, com.nubean.xmlespresso.feature and com.nubean.xmlespresso.site projects, in that order.
