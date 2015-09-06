@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         id="com.nubean.xmlespressoeditor"
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.nubean.xmlespresso.editors.XMLEspressoFormEditor"
+            contributorClass="com.nubean.xmlespresso.editors.DefaultEditorActionBarContrib"
+            default="true"
+            extensions="xml, xsd, xslt, xsl, wsdl, jsp, jsf, xjb"
+            icon="icons/xml.gif"
+            id="com.nubean.xmlespresso.xmleditor"
+            name="%xmlespressoEditor"/>
+      <editor
+            class="com.nubean.xmlespresso.editors.DTDEspressoEditor"
+            contributorClass="com.nubean.xmlespresso.editors.DefaultEditorActionBarContrib"
+            default="true"
+            extensions="dtd"
+            icon="icons/dtdf.gif"
+            id="com.nubean.xmlespresso.editors.dtdeditor"
+            name="%xmlespressoDTDEditor"/>
+      <editor
+            class="com.nubean.xmlespresso.editors.CSSEspressoEditor"
+            contributorClass="com.nubean.xmlespresso.editors.DefaultEditorActionBarContrib"
+            default="true"
+            extensions="css"
+            icon="icons/cssf.gif"
+            id="com.nubean.xmlespresso.editors.csseditor"
+            name="%xmlespressoCSSEditor"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="com.nubean.xmlespresso.xmlEspresso/com.nubean.xmlespresso.xmlDocumentCategory"
+            class="com.nubean.xmlespresso.wizards.NewXMLDocumentWizard"
+            hasPages="true"
+            icon="icons/xml.gif"
+            id="com.nubean.xmlespresso.newxml"
+            name="%newXMLDocument">
+         <selection class="org.eclipse.core.resources.IFolder"/>
+      </wizard>
+      <category
+            id="com.nubean.xmlespresso.xmlDocumentCategory"
+            name="%xmlDocumentWizard.category"
+            parentCategory="com.nubean.xmlespresso.xmlEspresso"/>
+      <category
+            id="com.nubean.xmlespresso.xmlEspresso"
+            name="%xmlEspresso.category"/>
+      <wizard
+            category="com.nubean.xmlespresso.xmlEspresso/com.nubean.xmlespresso.xmlDocumentCategory"
+            class="com.nubean.xmlespresso.wizards.NewDTDDocumentWizard"
+            hasPages="true"
+            icon="icons/dtdf.gif"
+            id="com.nubean.xmlespresso.newdtd"
+            name="%newDTDDocument">
+         <selection class="org.eclipse.core.resources.IFolder"/>
+      </wizard>
+      <wizard
+            category="com.nubean.xmlespresso.xmlEspresso/com.nubean.xmlespresso.xmlDocumentCategory"
+            class="com.nubean.xmlespresso.wizards.NewCSSDocumentWizard"
+            hasPages="true"
+            icon="icons/cssf.gif"
+            id="com.nubean.xmlespresso.newcss"
+            name="%newCSSDocument">
+         <selection class="org.eclipse.core.resources.IFolder"/>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.nubean.xmlespresso.preferences.XMLEditorPreferencePage"
+            id="com.nubean.xmlespresso.preferences.XMLEditorPreferencePage"
+            name="%xmlespressoEditor"/>
+      <page
+            class="com.nubean.xmlespresso.preferences.DTDEditorPreferencePage"
+            id="com.nubean.xmlespresso.preferences.DTDEditorPreferencePage"
+            name="%xmlespressoDTDEditor"/>
+      <page
+            class="com.nubean.xmlespresso.preferences.CSSEditorPreferencePage"
+            id="om.nubean.xmlespresso.preferences.CSSEditorPreferencePage"
+            name="%xmlespressoCSSEditor"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.core.resources.IFile"
+            class="com.nubean.xmlespresso.adapters.FileAdapterFactory">
+         <adapter type="com.nubean.xmlespresso.adapters.FileAdapter"/>
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.contexts">
+         <context
+		name="%xmlespresso.editor.context"
+		description="%xmlespresso.editor.context"
+		id="com.nubean.xmlEspressoEditorContext"
+		parentId="org.eclipse.ui.contexts.window">
+	</context>
+         
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+         <command
+            categoryId="com.nubean.xmlespresso.category.source"
+            description="%xmlespresso.format"
+            id="com.nubean.xmlespresso.format"
+            name="%xmlespresso.format">
+      </command>
+        <category
+            name="%xmlespresso.commands.category.name"
+            id="com.nubean.xmlespresso.category.source">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+           <key
+            commandId="com.nubean.xmlespresso.format"
+            contextId="com.nubean.xmlEspressoEditorContext"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+             sequence="M1+M2+F">
+      </key>
+         
+   </extension>
+    <extension point="org.eclipse.search.searchPages"> 
+      <page 
+         id="com.nubean.xmlespresso.search.XPathSearchDialogPage" 
+         label="%xpath.search" 
+         sizeHint="250,100" 
+         tabPosition="1" 
+         extensions="xml:100,xsl:100,xslt:100,xsd:100,xhtml:100" 
+         showScopeSection="true"
+         canSearchEnclosingProjects="true"
+         class="com.nubean.xmlespresso.search.XPathSearchDialogPage">
+      </page> 
+   </extension>
+   
+   <extension
+         id="XPathSearchResultPage"
+         name="XPathSearchResultPage"
+         point="org.eclipse.search.searchResultViewPages">
+	<viewPage
+		id="com.nubean.xmlespresso.search.XPathSearchResultPage"
+		searchResultClass="com.nubean.xmlespresso.search.XPathSearchResult"
+		class="com.nubean.xmlespresso.search.XPathSearchResultPage">
+	</viewPage>
+	</extension>
+ 	<extension
+         id="xpathmarker"
+         name="%xpath.marker"
+         point="org.eclipse.core.resources.markers">
+         <super type="org.eclipse.search.searchmarker" />
+         <persistent value="false"/>
+	</extension>
+  <extension
+        point="org.eclipse.ui.editors.annotationTypes">
+        <type  
+        	name="com.nubean.xmlespresso.xpathresults"
+        	markerType="com.nubean.xmlespresso.xpathmarker">
+		</type> 
+  </extension>
+  
+  <extension
+        point="org.eclipse.ui.editors.markerAnnotationSpecification">    
+	<specification
+	      		annotationType="com.nubean.xmlespresso.xpathresults"
+	            label="%xpath.results"
+	            icon="$nl$/icons/xpathresult.gif"
+	            textPreferenceKey="xpathResultIndication"
+	            textPreferenceValue="true"
+	            highlightPreferenceKey="xpathResultHighlighting"
+	            highlightPreferenceValue="true"
+	            overviewRulerPreferenceKey="xpathResultIndicationInOverviewRuler"
+	            overviewRulerPreferenceValue="true"
+	            verticalRulerPreferenceKey="xpathResultIndicationInVerticalRuler"
+	            verticalRulerPreferenceValue="true"
+	            colorPreferenceKey="xpathResultIndicationColor"
+	            colorPreferenceValue="192,255,192"
+	            presentationLayer="3"
+	            showInNextPrevDropdownToolbarActionKey="showxpathResultInNextPrevDropdownToolbarAction"
+	            showInNextPrevDropdownToolbarAction="true"
+	            isGoToNextNavigationTargetKey="isxpathResultGoToNextNavigationTarget"
+	            isGoToNextNavigationTarget="false"
+	            isGoToPreviousNavigationTargetKey="isxpathResultGoToPreviousNavigationTarget"
+	            isGoToPreviousNavigationTarget="false"
+	            textStylePreferenceKey="xpathResultTextStyle"
+	            textStylePreferenceValue="BOX">
+	     </specification> 
+</extension> 
+
+   
+
+</plugin>

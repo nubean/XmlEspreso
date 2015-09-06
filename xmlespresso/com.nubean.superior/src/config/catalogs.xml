@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<!DOCTYPE  catalogs  [<!ELEMENT catalogs (catalog)+>
+<!ELEMENT catalog (entry)+>
+<!ELEMENT entry (name,ext?,root?,dtd?,public?,system?,targetNamespace?,targetPrefix?,schema?,documentation)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT ext (#PCDATA)>
+<!ELEMENT root (#PCDATA)>
+<!ELEMENT dtd (#PCDATA)>
+<!ELEMENT public (#PCDATA)>
+<!ELEMENT system (#PCDATA)>
+<!ELEMENT targetNamespace (#PCDATA)>
+<!ELEMENT targetPrefix (#PCDATA)>
+<!ELEMENT schema (#PCDATA)>
+<!ELEMENT documentation (#PCDATA)>
+<!ATTLIST catalog title CDATA #REQUIRED>
+<!ATTLIST schema resource (true|false) #IMPLIED>
+<!ATTLIST dtd resource (true|false) #IMPLIED>
+<!ATTLIST entry mimeType CDATA #REQUIRED>
+<!ATTLIST documentation source CDATA #IMPLIED>
+ ]  >
+<!--The root element of catalogs.xml is catalogs -->
+<catalogs>
+
+	<catalog title="DTD">
+		<entry mimeType="text/dtd">
+			<name>XML document type declaration</name>
+			<ext>.dtd</ext>
+			<documentation source="http://www.w3.org/TR/REC-xml/#NT-markupdecl"></documentation>
+		</entry>
+	</catalog>
+
+	<catalog title="CSS">
+		<entry mimeType="text/css">
+			<name>Cascading Style Sheet 2.1</name>
+			<ext>.css</ext>
+			<documentation source="http://www.w3.org/TR/CSS21/cover.html"></documentation>
+		</entry>
+	</catalog>
+
+	<catalog title="Custom">
+		<entry mimeType="text/xml">
+			<name>Custom XML Document</name>
+
+			<documentation>This creates a custom XML document.</documentation>
+		</entry>
+		<entry mimeType="text/plain">
+			<name>Plain Text Document</name>
+
+			<documentation>This creates a plain text document.</documentation>
+		</entry>
+	</catalog>
+
+	<catalog title="W3C XML Schema"> <!--Schema Dtd -->
+
+		<entry mimeType="text/xml">
+			<name>Xml Schema</name>
+
+			<ext>.xsd</ext>
+
+			<root>schema</root>
+
+			<dtd>http://www.w3.org/2001/XMLSchema.dtd</dtd>
+
+			<public>-//W3C//DTD XMLSCHEMA 200102//EN</public>
+
+			<system>http://www.w3.org/2001/XMLSchema.dtd</system>
+
+			<targetNamespace>http://www.w3.org/2001/XMLSchema</targetNamespace>
+
+			<targetPrefix>xs</targetPrefix>
+
+			<schema>http://www.w3.org/2001/XMLSchema</schema>
+
+			<documentation source="http://www.w3.org/TR/xmlschema-1/"></documentation>
+		</entry>
+	</catalog>
+
+	<catalog title="Xslt"> <!--Xslt Dtd -->
+
+
+		<entry mimeType="text/xml">
+			<name>Xslt</name>
+
+			<ext>.xsl</ext>
+
+			<root>stylesheet</root>
+			<targetNamespace>http://www.w3.org/1999/XSL/Transform
+			</targetNamespace>
+
+			<targetPrefix>xsl</targetPrefix>
+
+			<schema>http://www.nubean.com/schemas/xslt.xsd</schema>
+
+			<documentation source="http://www.w3.org/TR/xslt"></documentation>
+		</entry>
+	</catalog>
+
+	<catalog title="W3C WSDL"> <!--WSDL schema -->
+
+		<entry mimeType="text/xml">
+			<name>Wsdl</name>
+
+			<ext>.wsdl</ext>
+
+			<root>definitions</root>
+			<targetNamespace>http://schemas.xmlsoap.org/wsdl/</targetNamespace>
+			<targetPrefix>wsdl</targetPrefix>
+
+			<schema>http://schemas.xmlsoap.org/wsdl/</schema>
+			<documentation source="http://www.w3.org/TR/wsdl"></documentation>
+		</entry>
+	</catalog>
+
+	<catalog title="Xhtml"> <!--Xhtml Schemas -->
+
+		<entry mimeType="text/xml">
+			<name>Xhtml Strict</name>
+
+			<ext>.html</ext>
+
+			<root>html</root>
+
+			<targetNamespace>http://www.w3.org/1999/xhtml</targetNamespace>
+
+			<targetPrefix>xh</targetPrefix>
+
+			<schema>http://www.nubean.com/schemas/xhtml-strict.xsd</schema>
+			<documentation source="http://www.w3.org/TR/xhtml1/"></documentation>
+		</entry>
+
+		<entry mimeType="text/xml">
+			<name>Xhtml Transitional</name>
+
+			<ext>.html</ext>
+
+			<root>html</root>
+
+			<targetNamespace>http://www.w3.org/1999/xhtml</targetNamespace>
+
+			<targetPrefix>xh</targetPrefix>
+
+			<schema>http://www.nubean.com/schemas/xhtml-transitional.xsd</schema>
+
+			<documentation source="http://www.w3.org/TR/xhtml1/"></documentation>
+		</entry>
+
+		<entry mimeType="text/xml">
+			<name>Xhtml Frameset</name>
+
+			<ext>.html</ext>
+
+			<root>html</root>
+			<targetNamespace>http://www.w3.org/1999/xhtml</targetNamespace>
+			<targetPrefix>xh</targetPrefix>
+
+			<schema>http://www.nubean.com/schemas/xhtml-frameset.xsd</schema>
+
+			<documentation source="http://www.w3.org/TR/xhtml1/"></documentation>
+		</entry>
+	</catalog>
+
+	<catalog title="SOAP">
+		<entry mimeType="text/xml">
+			<name>SOAP 1.1 Envelope</name>
+
+			<ext>.xml</ext>
+
+			<root>Envelope</root>
+			<targetNamespace>http://schemas.xmlsoap.org/soap/envelope/
+			</targetNamespace>
+
+			<targetPrefix>tns</targetPrefix>
+
+			<schema>http://schemas.xmlsoap.org/soap/envelope/</schema>
+
+			<documentation source="http://www.w3.org/TR/soap/"></documentation>
+		</entry>
+
+		<entry mimeType="text/xml">
+			<name>SOAP 1.2 Envelope</name>
+
+			<ext>.xml</ext>
+
+			<root>Envelope</root>
+
+			<targetNamespace>http://www.w3.org/2001/06/soap-envelope
+			</targetNamespace>
+
+			<targetPrefix>tns</targetPrefix>
+
+			<schema>http://www.w3.org/2001/06/soap-envelope</schema>
+			<documentation source="http://www.w3.org/TR/soap/"></documentation>
+		</entry>
+	</catalog>
+</catalogs>

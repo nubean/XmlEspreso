@@ -1,0 +1,1065 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE xs:schema PUBLIC '-//W3C//DTD XMLSCHEMA 200102//EN'
+  'http://www.w3.org/2001/XMLSchema.dtd'
+>
+<xs:schema targetNamespace="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xs:annotation>
+<xs:documentation xml:lang="en">
+Generated from DTD.</xs:documentation>
+</xs:annotation>
+<xs:element name="stylesheet">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" ref="import">
+</xs:element>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="include">
+</xs:element>
+<xs:element ref="strip-space">
+</xs:element>
+<xs:element ref="preserve-space">
+</xs:element>
+<xs:element ref="output">
+</xs:element>
+<xs:element ref="key">
+</xs:element>
+<xs:element ref="decimal-format">
+</xs:element>
+<xs:element ref="attribute-set">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="param">
+</xs:element>
+<xs:element ref="template">
+</xs:element>
+<xs:element ref="namespace-alias">
+</xs:element>
+</xs:choice>
+</xs:sequence>
+<xs:attribute name="version" type="xs:string" use="required">
+</xs:attribute>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="exclude-result-prefixes" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="extension-element-prefixes" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="xmlns" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="id" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="transform">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" ref="import">
+</xs:element>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="include">
+</xs:element>
+<xs:element ref="strip-space">
+</xs:element>
+<xs:element ref="preserve-space">
+</xs:element>
+<xs:element ref="output">
+</xs:element>
+<xs:element ref="key">
+</xs:element>
+<xs:element ref="decimal-format">
+</xs:element>
+<xs:element ref="attribute-set">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="param">
+</xs:element>
+<xs:element ref="template">
+</xs:element>
+<xs:element ref="namespace-alias">
+</xs:element>
+</xs:choice>
+</xs:sequence>
+<xs:attribute name="version" type="xs:string" use="required">
+</xs:attribute>
+<xs:attribute name="exclude-result-prefixes" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="extension-element-prefixes" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="id" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="import">
+<xs:complexType>
+<xs:attribute name="href" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="include">
+<xs:complexType>
+<xs:attribute name="href" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="strip-space">
+<xs:complexType>
+<xs:attribute name="elements" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="preserve-space">
+<xs:complexType>
+<xs:attribute name="elements" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="output">
+<xs:complexType>
+<xs:attribute name="method" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="doctype-public" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="encoding" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="indent">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="yes">
+</xs:enumeration>
+<xs:enumeration value="no">
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="omit-xml-declaration">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="yes">
+</xs:enumeration>
+<xs:enumeration value="no">
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="standalone">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="yes">
+</xs:enumeration>
+<xs:enumeration value="no">
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="version" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="cdata-section-elements" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="media-type" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="doctype-system" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="key">
+<xs:complexType>
+<xs:attribute name="use" type="xs:string" use="required">
+</xs:attribute>
+<xs:attribute name="match" type="xs:string" use="required">
+</xs:attribute>
+<xs:attribute name="name" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="decimal-format">
+<xs:complexType>
+<xs:attribute default="," name="grouping-separator" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default="." name="decimal-separator" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="name" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default=";" name="pattern-separator" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default="-" name="minus-sign" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default="&amp;#x2030;" name="per-mille" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default="Infinity" name="infinity" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default="%" name="percent" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default="#" name="digit" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default="NaN" name="NaN" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default="0" name="zero-digit" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="namespace-alias">
+<xs:complexType>
+<xs:attribute name="result-prefix" type="xs:string" use="required">
+</xs:attribute>
+<xs:attribute name="stylesheet-prefix" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="template">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:element ref="param">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="name" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="match" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="priority" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="mode" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="value-of">
+<xs:complexType>
+<xs:attribute name="select" type="xs:string" use="required">
+</xs:attribute>
+<xs:attribute name="disable-output-escaping">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="yes">
+</xs:enumeration>
+<xs:enumeration value="no">
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="copy-of">
+<xs:complexType>
+<xs:attribute name="select" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="number">
+<xs:complexType>
+<xs:attribute name="grouping-separator" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="level">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="single">
+</xs:enumeration>
+<xs:enumeration value="multiple">
+</xs:enumeration>
+<xs:enumeration value="any">
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="lang" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="letter-value" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="grouping-size" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="count" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="from" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default="1" name="format" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="value" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="apply-templates">
+<xs:complexType>
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="sort">
+</xs:element>
+<xs:element ref="with-param">
+</xs:element>
+</xs:choice>
+<xs:attribute default="node()" name="select" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="mode" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+
+<xs:element name="apply-imports"> 
+    <xs:complexType> 
+      <xs:complexContent> 
+        <xs:restriction base="xs:anyType"/> 
+      </xs:complexContent> 
+    </xs:complexType> 
+  </xs:element> 
+
+<xs:annotation>
+<xs:documentation xml:lang="en">
+ sort cannot occur after any other elements or
+any non-whitespace character </xs:documentation>
+</xs:annotation>
+<xs:element name="for-each">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:element ref="sort">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="select" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="sort">
+<xs:complexType>
+<xs:attribute default="ascending" name="order" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default="." name="select" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="case-order" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute default="text" name="data-type" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="lang" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="if">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="test" type="xs:string" use="required">
+</xs:attribute>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="choose">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="1" ref="when">
+</xs:element>
+<xs:element maxOccurs="1" minOccurs="0" ref="otherwise">
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="when">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="test" type="xs:string" use="required">
+</xs:attribute>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="otherwise">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="attribute-set">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" ref="attribute">
+</xs:element>
+</xs:sequence>
+<xs:attribute name="use-attribute-sets" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="name" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="call-template">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" ref="with-param">
+</xs:element>
+</xs:sequence>
+<xs:attribute name="name" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="with-param">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="select" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="name" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="variable">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="select" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="name" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="param">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="select" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="name" type="xs:string" use="required">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="text">
+<xs:complexType>
+<xs:attribute name="disable-output-escaping">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="yes">
+</xs:enumeration>
+<xs:enumeration value="no">
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+</xs:complexType>
+
+</xs:element>
+<xs:element name="processing-instruction">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="name" type="xs:string" use="required">
+</xs:attribute>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="element">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="use-attribute-sets" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="name" type="xs:string" use="required">
+</xs:attribute>
+<xs:attribute name="namespace" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="attribute">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="name" type="xs:string" use="required">
+</xs:attribute>
+<xs:attribute name="namespace" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="comment">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="copy">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="use-attribute-sets" type="xs:string" use="optional">
+</xs:attribute>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="message">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+<xs:attribute name="terminate">
+<xs:simpleType>
+<xs:restriction base="xs:string">
+<xs:enumeration value="yes">
+</xs:enumeration>
+<xs:enumeration value="no">
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:attribute>
+<xs:attribute name="xml:space" type="xs:string" use="optional">
+</xs:attribute>
+</xs:complexType>
+</xs:element>
+<xs:element name="fallback">
+<xs:complexType mixed="true">
+<xs:choice maxOccurs="unbounded" minOccurs="0">
+<xs:element ref="apply-templates">
+</xs:element>
+<xs:element ref="call-template">
+</xs:element>
+<xs:element ref="apply-imports">
+</xs:element>
+<xs:element ref="for-each">
+</xs:element>
+<xs:element ref="value-of">
+</xs:element>
+<xs:element ref="copy-of">
+</xs:element>
+<xs:element ref="number">
+</xs:element>
+<xs:element ref="choose">
+</xs:element>
+<xs:element ref="if">
+</xs:element>
+<xs:element ref="text">
+</xs:element>
+<xs:element ref="copy">
+</xs:element>
+<xs:element ref="variable">
+</xs:element>
+<xs:element ref="message">
+</xs:element>
+<xs:element ref="fallback">
+</xs:element>
+<xs:element ref="processing-instruction">
+</xs:element>
+<xs:element ref="comment">
+</xs:element>
+<xs:element ref="element">
+</xs:element>
+<xs:element ref="attribute">
+</xs:element>
+<xs:any maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+</xs:choice>
+</xs:complexType>
+</xs:element>
+</xs:schema>

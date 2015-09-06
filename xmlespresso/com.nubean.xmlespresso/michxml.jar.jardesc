@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="C:/eclipse-workspaces/xmlespresso/com.nubean.xmlespresso/src/lib/michxml.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/com.nubean.xmlespresso/michxml.jar.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;config"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.michxml.elem"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;dtds"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.michxml.parser"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.css"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;images"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.michxml"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;dk.brics.automaton"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;schemas"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.michdtd"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.michbase"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.css.parser"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.michlic"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;styles"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.michutil"/>
+        <file path="/com.nubean.superior/src/ApplicationResources.properties"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.michdtd.parser"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.michsign"/>
+        <javaElement handleIdentifier="=com.nubean.superior/src&lt;com.nubean.michxml.attr"/>
+    </selectedElements>
+</jardesc>

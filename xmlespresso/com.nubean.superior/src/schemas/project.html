@@ -1,0 +1,3983 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en]C-SYMPA  (Windows NT 5.0; U) [Netscape]">
+</head>
+<body>
+
+<h2>
+Ant Tasks</h2>
+
+<p><br><a NAME="copy"></a>
+<h2>
+copy</h2>
+Copies a file or FileSet to a new file or directory. By default, files
+are only copied if the source file is newer than the destination file,
+or when the destination file does not exist. However, you can explicitly
+overwrite files with the <tt>overwrite</tt> attribute.
+<p>To use a <tt>&lt;fileset></tt>, the <tt>todir</tt> attribute must be
+set.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>file</td>
+
+<td VALIGN=TOP>The file to copy.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes, unless a nested <tt>&lt;fileset></tt>
+element is used.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>preservelastmodified</td>
+
+<td VALIGN=TOP>Give the copied files the same last modified time as the
+original source files. (<i>Note</i>: Ignored on Java 1.1)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No; defaults to false.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>tofile</td>
+
+<td VALIGN=TOP>The file to copy to.</td>
+
+<td ALIGN=CENTER VALIGN=TOP ROWSPAN="2">With the <tt>file</tt> attribute,
+either <tt>tofile</tt> or <tt>todir</tt> can be used. With nested <tt>&lt;fileset></tt>
+elements, if the set of files is greater than 1, or if only the <tt>dir</tt>
+attribute is specified in the <tt>&lt;fileset></tt>, or if the <tt>file</tt>
+attribute is also specified, then only <tt>todir</tt> is allowed.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>todir</td>
+
+<td VALIGN=TOP>The directory to copy to.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>overwrite</td>
+
+<td VALIGN=TOP>Overwrite existing files even if the destination files are
+newer.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No; defaults to false.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>filtering</td>
+
+<td VALIGN=TOP>Indicates whether token filtering using the global build-file
+filters should take place during the copy. <i>Note</i>: Nested <tt>&lt;filterset></tt>
+elements will always be used, even if this attribute is not specified,
+or its value is <tt>false</tt> (<tt>no</tt>, or <tt>off</tt>).</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No; defaults to false.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>flatten</td>
+
+<td VALIGN=TOP>Ignore the directory structure of the source files, and
+copy all files into the directory specified by the <tt>todir</tt> attribute.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No; defaults to false.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includeEmptyDirs</td>
+
+<td VALIGN=TOP>Copy any empty directories included in the FileSet(s).&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No; defaults to true.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>failonerror</td>
+
+<td VALIGN=TOP>Log a warning message, but do not stop the build, when the
+file to copy does not exist. Only meaningful when copying a single file.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No; defaults to true.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>verbose</td>
+
+<td VALIGN=TOP>Log the files that are being copied.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No; defaults to false.</td>
+</tr>
+</table>
+
+<p><a NAME="war"></a>
+<h2>
+war</h2>
+An extension of the Jar task with special treatment for files that should
+end up in the <tt>WEB-INF/lib</tt>, <tt>WEB-INF/classes</tt> or <tt>WEB-INF</tt>
+directories of the Web Application Archive.
+<p>(The War task is a shortcut for specifying the particular layout of
+a WAR file. The same thing can be accomplished by using the <i>prefix</i>
+and <i>fullpath</i> attributes of zipfilesets in a Zip or Jar task.)
+<p>The extended zipfileset element from the zip task (with attributes <i>prefix</i>,
+<i>fullpath</i>,
+and <i>src</i>) is available in the War task.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>destfile</td>
+
+<td VALIGN=TOP>the WAR file to create.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>webxml</td>
+
+<td VALIGN=TOP>The deployment descriptor to use (WEB-INF/web.xml).</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes, unless update is set to true</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>basedir</td>
+
+<td VALIGN=TOP>the directory from which to jar the files.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>compress</td>
+
+<td VALIGN=TOP>Not only store data but also compress them, defaults to
+true</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>encoding</td>
+
+<td VALIGN=TOP>The character encoding to use for filenames inside the archive.
+Defaults to UTF8. <b>It is not recommended to change this value as the
+created archive will most likely be unreadable for Java otherwise.</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>filesonly</td>
+
+<td VALIGN=TOP>Store only file entries, defaults to false</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be included. All files are included when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an include pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be excluded. No files (except default excludes) are excluded when
+omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an exclude pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>indicates whether default excludes should be used or not
+("yes"/"no"). Default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>manifest</td>
+
+<td VALIGN=TOP>the manifest file to use.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>update</td>
+
+<td VALIGN=TOP>indicates whether to update or overwrite the destination
+file if it already exists.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="ear"></a>
+<h2>
+ear</h2>
+An extension of the Jar task with special treatment for files that should
+end up in an Enterprise Application archive.
+<p>(The Ear task is a shortcut for specifying the particular layout of
+a EAR file. The same thing can be accomplished by using the <i>prefix</i>
+and <i>fullpath</i> attributes of zipfilesets in a Zip or Jar task.)
+<p>The extended zipfileset element from the zip task (with attributes <i>prefix</i>,
+<i>fullpath</i>,
+and <i>src</i>) is available in the Ear task.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>destfile</td>
+
+<td VALIGN=TOP>the EAR file to create.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>appxml</td>
+
+<td VALIGN=TOP>The deployment descriptor to use (META-INF/application.xml).</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes, unless update is set to true</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>basedir</td>
+
+<td VALIGN=TOP>the directory from which to jar the files.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>compress</td>
+
+<td VALIGN=TOP>Not only store data but also compress them, defaults to
+true</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>encoding</td>
+
+<td VALIGN=TOP>The character encoding to use for filenames inside the archive.
+Defaults to UTF8. <b>It is not recommended to change this value as the
+created archive will most likely be unreadable for Java otherwise.</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>filesonly</td>
+
+<td VALIGN=TOP>Store only file entries, defaults to false</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be included. All files are included when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an include pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be excluded. No files (except default excludes) are excluded when
+omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an exclude pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>indicates whether default excludes should be used or not
+("yes"/"no"). Default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>manifest</td>
+
+<td VALIGN=TOP>the manifest file to use.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>update</td>
+
+<td VALIGN=TOP>indicates whether to update or overwrite the destination
+file if it already exists.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="jar"></a>
+<h2>
+jar</h2>
+Jars a set of files.
+<p>The <i>basedir</i> attribute is the reference directory from where to
+jar.
+<p>Note that file permissions will not be stored in the resulting jarfile.
+<p>It is possible to refine the set of files that are being jarred. This
+can be done with the <i>includes</i>, <i>includesfile</i>, <i>excludes</i>,
+<i>excludesfile</i>
+and <i>defaultexcludes</i> attributes. With the <i>includes</i> or <i>includesfile</i>
+attribute you specify the files you want to have included by using patterns.
+The <i>exclude</i> or <i>excludesfile</i> attribute is used to specify
+the files you want to have excluded. This is also done with patterns. And
+finally with the <i>defaultexcludes</i> attribute, you can specify whether
+you want to use default exclusions or not.
+<p>If the manifest is omitted, a simple one will be supplied by Ant.
+<p>The <tt>update</tt> parameter controls what happens if the JAR file
+already exists. When set to <tt>yes</tt>, the JAR file is updated with
+the files specified. When set to <tt>no</tt> (the default) the JAR file
+is overwritten.
+<p>(The Jar task is a shortcut for specifying the manifest file of a JAR
+file. The same thing can be accomplished by using the <i>fullpath</i> attribute
+of a zipfileset in a Zip task. The one difference is that if the <i>manifest</i>
+attribute is not specified, the Jar task will include an empty one for
+you.)
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>destfile</td>
+
+<td VALIGN=TOP>the JAR file to create.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>basedir</td>
+
+<td VALIGN=TOP>the directory from which to jar the files.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>compress</td>
+
+<td VALIGN=TOP>Not only store data but also compress them, defaults to
+true</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>encoding</td>
+
+<td VALIGN=TOP>The character encoding to use for filenames inside the archive.
+Defaults to UTF8. <b>It is not recommended to change this value as the
+created archive will most likely be unreadable for Java otherwise.</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>filesonly</td>
+
+<td VALIGN=TOP>Store only file entries, defaults to false</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be included. All files are included when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an include pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be excluded. No files (except default excludes) are excluded when
+omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an exclude pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>indicates whether default excludes should be used or not
+("yes"/"no"). Default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>manifest</td>
+
+<td VALIGN=TOP>the manifest file to use. This can be either the location
+of a manifest, or the name of a jar added through a fileset. If its the
+name of an added jar, the task expects the manifest to be in the jar at
+META-INF/MANIFEST.MF</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>update</td>
+
+<td VALIGN=TOP>indicates whether to update or overwrite the destination
+file if it already exists.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>whenempty</td>
+
+<td VALIGN=TOP>behavior when no files match. Valid values are "fail", "skip",
+and "create". Default is "skip".</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>duplicate</td>
+
+<td VALIGN=TOP>behavior when a duplicate file is found. Valid values are
+"add", "preserve", and "fail". The default value is "add".&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>index</td>
+
+<td VALIGN=TOP>whether to create an <a href="http://java.sun.com/j2se/1.3/docs/guide/jar/jar.html#JAR%20Index">index
+list</a> to speed up classloading. This is a JDK 1.3+ specific feature.
+Defaults to false.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="tempfile"></a>
+<h2>
+tempfile</h2>
+This task sets a property to the name of a temporary file. Unlike the Java1.2
+method to create a temporary file, this task does work with Java1.1. It
+does not actually create the temporary file, but it does guarantee that
+the file did not exist when the task was executed.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>destdir</td>
+
+<td VALIGN=TOP>The directory the temporary file should be located in. If
+not set, the current directory is used.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>prefix</td>
+
+<td VALIGN=TOP>A prefix for the temporary file name.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>property</td>
+
+<td VALIGN=TOP>The name of the property to set with the value of the temporary
+file name.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>suffix</td>
+
+<td VALIGN=TOP>A suffix for the temporary file name.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="manifest"></a>
+<h2>
+manifest</h2>
+Creates a manifest file.
+<p>This task can be used to write a Manifest file, optionally replacing
+or updating an existing file.
+<p>Manifests are processed according to the <a href="http://java.sun.com/j2se/1.3/docs/guide/jar/jar.html">Jar
+file specification.</a>. Specifically, a manifest element consists of a
+set of attributes and sections. These sections in turn may contain attributes.
+Note in particular that this may result in manifest lines greater than
+72 bytes being wrapped and continued on the next line.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>file</td>
+
+<td VALIGN=TOP>the manifest-file to create/update.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>mode</td>
+
+<td VALIGN=TOP>One of "update" or "replace", default is "replace".</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="dirname"></a>
+<h2>
+dirname</h2>
+Task to determine the directory path of a specified file.
+<p>When this task executes, it will set the specified property to the value
+of the specified file up to, but not including, the last path element.
+If the specified file is a path that ends in a filename, the filename will
+be dropped. If the specified file is just a filename, the directory will
+be the current directory.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>file</td>
+
+<td VALIGN=TOP>The path to take the dirname of.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>property</td>
+
+<td VALIGN=TOP>The name of the property to set.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+</table>
+
+<p><a NAME="basename"></a>
+<h2>
+basename</h2>
+Task to determine the basename of a specified file, optionally minus a
+specified suffix.
+<p>When this task executes, it will set the specified property to the value
+of the last path element of the specified file. If <tt>file</tt> is a directory,
+the basename will be the last directory element. If <tt>file</tt> is a
+full-path, relative-path, or simple filename, the basename will be the
+simple file name, without any directory elements.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>file</td>
+
+<td VALIGN=TOP>The path to take the basename of.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>property</td>
+
+<td VALIGN=TOP>The name of the property to set.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>suffix</td>
+
+<td VALIGN=TOP>The suffix to remove from the resulting basename (specified
+either with or without the "<tt>.</tt>").</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="fileset"></a>
+<h2>
+fileset</h2>
+FileSets are groups of files. These files can be found in a directory tree
+starting in a base directory and are matched by patterns taken from a number
+of PatternSets. FileSets can appear inside tasks that support this feature
+or at the same level as <tt>target</tt> - i.e., as children of <tt>project</tt>.
+<p>PatternSets can be specified as nested <tt>&lt;patternset></tt> elements.
+In addition, FileSet holds an implicit PatternSet and supports the nested
+<tt>&lt;include></tt>,
+<tt>&lt;includesfile></tt>,
+<tt>&lt;exclude></tt> and <tt>&lt;excludesfile></tt> elements of PatternSet
+directly, as well as PatternSet's attributes.
+<br>&nbsp;
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>dir</td>
+
+<td VALIGN=TOP>the root of the directory tree of this FileSet.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>indicates whether default excludes should be used or not
+(<tt>yes | no</tt>); default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be included; all files are included when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includesfile</td>
+
+<td VALIGN=TOP>the name of a file; each line of this file is taken to be
+an include pattern.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be excluded; no files (except default excludes) are excluded when
+omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludesfile</td>
+
+<td VALIGN=TOP>the name of a file; each line of this file is taken to be
+an exclude pattern.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>casesensitive</td>
+
+<td VALIGN=TOP>Must the file system be treated in a case sensitive way?
+Defaults to true.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>followsymlinks</td>
+
+<td VALIGN=TOP>Shall symbolic links be followed? Defaults to true.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="property"></a>
+<h2>
+property</h2>
+Sets a property (by name and value), or set of properties (from file or
+resource) in the project. Properties are case sensitive.
+<br>Properties are immutable: whoever sets a property first freezes it
+for the rest of the build; they are most definately not variable.
+<p>There are five ways to set properties:
+<ul>
+<li>
+By supplying both the <i>name</i> and <i>value</i> attribute.</li>
+
+<li>
+By supplying both the <i>name</i> and <i>refid</i> attribute.</li>
+
+<li>
+By setting the <i>file</i> attribute with the filename of the property
+file to load. This property file has the format as defined by the file
+used in the class java.util.Properties.</li>
+
+<li>
+By setting the <i>resource</i> attribute with the resource name of the
+property file to load. This property file has the format as defined by
+the file used in the class java.util.Properties.</li>
+
+<li>
+By setting the <i>environment</i> attribute with a prefix to use. Properties
+will be defined for every environment variable by prefixing the supplied
+name and a period to the name of the variable.</li>
+</ul>
+Although combinations of these ways are possible, only one should be used
+at a time. Problems might occur with the order in which properties are
+set, for instance.
+<p>The value part of the properties being set, might contain references
+to other properties. These references are resolved at the time these properties
+are set. This also holds for properties loaded from a property file.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>name</td>
+
+<td VALIGN=TOP>the name of the property to set.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>value</td>
+
+<td VALIGN=TOP>the value of the property.</td>
+
+<td ALIGN=CENTER VALIGN=CENTER ROWSPAN="3">One of these, when using the
+name attribute</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>location</td>
+
+<td VALIGN=TOP>Sets the property to the absolute filename of the given
+file. If the value of this attribute is an absolute path, it is left unchanged
+(with / and \ characters converted to the current platforms conventions).
+Otherwise it is taken as a path relative to the project's basedir and expanded.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>refid</td>
+
+<td VALIGN=TOP>to an object defined elsewhere.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>resource</td>
+
+<td VALIGN=TOP>the resource name of the property file.</td>
+
+<td ALIGN=CENTER VALIGN=CENTER ROWSPAN="3">One of these, when <b>not</b>
+using the name attribute</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>file</td>
+
+<td VALIGN=TOP>the filename of the property file .</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>environment</td>
+
+<td VALIGN=TOP>the prefix to use when retrieving environment variables.
+Thus if you specify environment="myenv" you will be able to access OS-specific
+environment variables via property names "myenv.PATH" or "myenv.TERM".
+Note that if you supply a property name with a final "." it will not be
+doubled. ie environment="myenv." will still allow access of environment
+variables through "myenv.PATH" and "myenv.TERM". This functionality is
+currently only implemented on select platforms.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpath</td>
+
+<td VALIGN=TOP>the classpath to use when looking up a resource.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpathref</td>
+
+<td VALIGN=TOP>the classpath to use when looking up a resource, given as
+reference to a &lt;path> defined elsewhere..</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>prefix</td>
+
+<td VALIGN=TOP>Prefix to apply to properties loaded using <tt>file</tt>
+or <tt>resource</tt>. A "." is appended to the prefix if not specified.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="ant"></a>
+<h2>
+ant</h2>
+Runs Ant on a supplied buildfile. This can be used to build subprojects.
+<p>When the <i>antfile</i> attribute is omitted, the file "build.xml" in
+the supplied directory (<i>dir</i> attribute) is used.
+<p>If no target attribute is supplied, the default target of the new project
+is used.
+<p>By default, all of the properties of the current project will be available
+in the new project. Alternatively, you can set the <i>inheritAll</i> attribute
+to <tt>false</tt> and only "user" properties (i.e., those passed on the
+command-line) will be passed to the new project. In either case, the set
+of properties passed to the new project will override the properties that
+are set in the new project (See also the property task).
+<p>You can also set properties in the new project from the old project
+by using nested property tags. These properties are always passed regardless
+of the setting of <i>inheritAll</i>. This allows you to parameterize your
+subprojects.
+<p>References to data types can also be passed to the new project, but
+by default they are not. If you set the inheritrefs attribute to true,
+all references will be copied, but they will not override references defined
+in the new project.
+<p>Nested <i>&lt;reference></i> elements can also be used to copy references
+from the calling project to the new project, optionally under a different
+id. References taken from nested elements will override existing references
+in the new project.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>antfile</td>
+
+<td VALIGN=TOP>the buildfile to use. Defaults to "build.xml". This file
+is expected to be a filename relative to the dir attribute given.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>dir</td>
+
+<td VALIGN=TOP>the directory to use as a basedir for the new Ant project.
+Defaults to the current project's basedir, unless inheritall has been set
+to false, in which case it doesn't have a default value. This will override
+the basedir setting of the called project.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>target</td>
+
+<td VALIGN=TOP>the target of the new Ant project that should be executed.
+Defaults to the new project's default target.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>output</td>
+
+<td VALIGN=TOP>Filename to write the ant output to. This is relative to
+the value of the dir attribute if it has been set or to the base directory
+of the current project otherwise.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>inheritAll</td>
+
+<td VALIGN=TOP>If <tt>true</tt>, pass all properties to the new Ant project.
+Defaults to <tt>true</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>inheritRefs</td>
+
+<td VALIGN=TOP>If <tt>true</tt>, pass all references to the new Ant project.
+Defaults to <tt>false</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="available"></a>
+<h2>
+available</h2>
+Sets a property if a resource is available at runtime. This resource can
+be a file, a directory, a class in the classpath, or a JVM system resource.
+<p>If the resource is present, the property value is set to true by default;
+otherwise, the property is not set. You can set the value to something
+other than the default by specifying the <tt>value</tt> attribute.
+<p>Normally, this task is used to set properties that are useful to avoid
+target execution depending on system parameters.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>property</td>
+
+<td VALIGN=TOP>The name of the property to set.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>value</td>
+
+<td VALIGN=TOP>The value to set the property to. Defaults to "true".</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classname</td>
+
+<td VALIGN=TOP>The class to look for in the classpath.</td>
+
+<td ALIGN=CENTER VALIGN=CENTER ROWSPAN="3">Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>file</td>
+
+<td VALIGN=TOP>The file to look for.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>resource</td>
+
+<td VALIGN=TOP>The resource to look for in the JVM.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpath</td>
+
+<td VALIGN=TOP>The classpath to use when looking up <tt>classname</tt>
+or <tt>resource</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>filepath</td>
+
+<td VALIGN=TOP>The path to use when looking up <tt>file</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpathref</td>
+
+<td VALIGN=TOP>The classpath to use, given as a reference to a path defined
+elsewhere.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>type</td>
+
+<td VALIGN=TOP>The type of <tt>file</tt> to look for, either a directory
+(<tt>type="dir"</tt>) or a file (<tt>type="file"</tt>). If not set, the
+property will be set if the name specified in the <tt>file</tt> attribute
+exists as either a file or a directory.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>ignoresystemclasses</td>
+
+<td VALIGN=TOP>Ignore Ant's runtime classes, using only the specified classpath.
+Only affects the "classname" attribute. Defaults to "false"</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="chmod"></a>
+<h2>
+chmod</h2>
+Changes the permissions of a file or all files inside specified directories.
+Right now it has effect only under Unix. The permissions are also UNIX
+style, like the argument for the chmod command.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>file</td>
+
+<td VALIGN=TOP>the file or single directory of which the permissions must
+be changed.</td>
+
+<td VALIGN=TOP ROWSPAN="2">exactly one of the two or nested <tt>&lt;fileset></tt>
+elements.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>dir</td>
+
+<td VALIGN=TOP>the directory which holds the files whose permissions must
+be changed.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>perm</td>
+
+<td VALIGN=TOP>the new permissions.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be included.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be excluded. No files (except default excludes) are excluded when
+omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>indicates whether default excludes should be used or not
+("yes"/"no"). Default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>parallel</td>
+
+<td VALIGN=TOP>process all specified files using a single <tt>chmod</tt>
+command. Defaults to true.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>type</td>
+
+<td VALIGN=TOP>One of <i>file</i>, <i>dir</i> or <i>both</i>. If set to
+<i>file</i>,
+only the permissions of plain files are going to be changed. If set to
+<i>dir</i>,
+only the directories are considered.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default is <i>file</i></td>
+</tr>
+</table>
+
+<h2>
+<a NAME="gzip"></a></h2>
+
+<h2>
+gzip</h2>
+Packs a file using the GZip or BZip2 algorithm. The output file is only
+generated if it doesn't exist or the source file is newer.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>src</td>
+
+<td VALIGN=TOP>the file to gzip/bzip.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>zipfile</td>
+
+<td VALIGN=TOP>the destination file.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+</table>
+
+<p><a NAME="filter"></a>
+<h2>
+filter</h2>
+Sets a token filter for this project or read multiple token filter from
+an input file and sets these as filters. Token filters are used by all
+tasks that perform file copying operations through the Project commodity
+methods.
+<p>Note:
+<ol>
+<li>
+The token string must not contain the separators chars (@).</li>
+
+<li>
+Either token and value attributes must be provided, or only the filtersfile
+attribute.</li>
+</ol>
+
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>token</td>
+
+<td VALIGN=TOP>the token string without @</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>value</td>
+
+<td VALIGN=TOP>the string that should be put to replace the token when
+the file is copied</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>filtersfile</td>
+
+<td VALIGN=TOP>The file from which the filters must be read. This file
+must be a formatted as a property file.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+</table>
+
+<p><a NAME="taskdef>       <h2><a name=" taskdef"></a>
+<br>&nbsp;
+<h2>
+taskdef</h2>
+Taskdef adds a task definition to the current project, such that this new
+task can be used in the current project. Two attributes are needed, the
+name that identifies this task uniquely, and the full name of the class
+(including the packages) that implements this task.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>name</td>
+
+<td VALIGN=TOP>the name of the task</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes, unless file or resource have been specified.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classname</td>
+
+<td VALIGN=TOP>the full class name implementing the task</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes, unless file or resource have been specified.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>file</td>
+
+<td VALIGN=TOP>Name of the property file to load taskname/classname pairs
+from.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>resource</td>
+
+<td VALIGN=TOP>Name of the property resource to load taskname/classname
+pairs from.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpath</td>
+
+<td VALIGN=TOP>the classpath to use when looking up <tt>classname</tt>
+or <tt>resource</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpathref</td>
+
+<td VALIGN=TOP>Reference to a classpath to use when looking up <tt>classname</tt>
+or <tt>resource</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>loaderRef</td>
+
+<td VALIGN=TOP>the name of the loader that is used to load the class, constructed
+from the specified classpath.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<h3>
+</h3>
+
+<p><br><a NAME="xslt"></a>
+<h2>
+xslt</h2>
+Process a set of documents via XSLT.
+<p>This is useful for building views of XML based xs:documentation, or
+for generating code.
+<p><b>Note:</b> This task depends on external libraries not included in
+the Ant distribution.
+<p>It is possible to refine the set of files that are being processed.
+This can be done with the <i>includes</i>, <i>includesfile</i>, <i>excludes</i>,
+<i>excludesfile</i>
+and <i>defaultexcludes</i> attributes. With the <i>includes</i> or <i>includesfile</i>
+attribute you specify the files you want to have included by using patterns.
+The <i>exclude</i> or <i>excludesfile</i> attribute is used to specify
+the files you want to have excluded. This is also done with patterns. And
+finally with the <i>defaultexcludes</i> attribute, you can specify whether
+you want to use default exclusions or not.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>basedir</td>
+
+<td VALIGN=TOP>where to find the source XML file, default is the project's
+basedir.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>destdir</td>
+
+<td VALIGN=TOP>directory in which to store the results.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes, unless in and out have been specified.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>extension</td>
+
+<td VALIGN=TOP>desired file extension to be used for the targets. If not
+specified, the default is ".html".</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpath</td>
+
+<td VALIGN=TOP>the classpath to use when looking up the XSLT processor.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpathref</td>
+
+<td VALIGN=TOP>the classpath to use, given as reference to a path defined
+elsewhere.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>force</td>
+
+<td VALIGN=TOP>Recreate target files, even if they are newer than their
+corresponding source files or the stylesheet.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No; default is false</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>processor</td>
+
+<td VALIGN=TOP>name of the XSLT processor to use. Permissible values are
+"trax" for a TraX compliant processor (ie JAXP interface implementation
+such as Xalan 2 or Saxon), "xslp" for the XSL:P processor, "xalan" for
+the Apache XML Xalan (version 1) processor the name of an arbitrary XSLTLiaison
+class. Defaults to trax, followed by xalan and then xslp (in that order).
+The first one found in your class path is the one that is used. <i><b>DEPRECATED</b>
+- XSL:P and xalan are deprecated and no more supported.</i>.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be included. All files are included when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an include pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be excluded. No files (except default excludes) are excluded when
+omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an exclude pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>indicates whether default excludes should be used or not
+("yes"/"no"). Default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>in</td>
+
+<td VALIGN=TOP>specifies a single XML document to be styled. Should be
+used with the out attribute.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>out</td>
+
+<td VALIGN=TOP>specifies the output name for the styled result from the
+in attribute.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>scanincludeddirectories</td>
+
+<td VALIGN=TOP>If any directories are matched by the includes/excludes
+patterns, try to transform all files in these directories. Default is <tt>true</tt></td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="replace"></a>
+<h2>
+replace</h2>
+Replace is a directory based task for replacing the occurrence of a given
+string with another string in selected file.
+<p>If you want to replace a text that crosses line boundaries, you must
+use a nested <tt>&lt;replacetoken></tt> element.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>file</td>
+
+<td VALIGN=TOP>file for which the token should be replaced.</td>
+
+<td ALIGN=CENTER ROWSPAN="2">Exactly one of the two.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>dir</td>
+
+<td VALIGN=TOP>The base directory to use when replacing a token in multiple
+files.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>encoding</td>
+
+<td VALIGN=TOP>The encoding of the files upon which replace operates.</td>
+
+<td ALIGN=CENTER>No - defaults to default JVM encoding</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>token</td>
+
+<td VALIGN=TOP>the token which must be replaced.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes, unless a nested <tt>replacetoken</tt>
+element or the replacefilterfile attribute is used.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>value</td>
+
+<td VALIGN=TOP>the new value for the token. When omitted, an empty string
+("") is used.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>summary</td>
+
+<td VALIGN=TOP>Indicates whether a summary of the replace operation should
+be produced, detailing how many token occurrences and files were processed&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, by default no summary is produced</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>propertyFile</td>
+
+<td VALIGN=TOP>valid property file from which properties specified using
+nested <tt>&lt;replacefilter></tt> elements are drawn.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes only if <i>property</i> attribute of <tt>&lt;replacefilter></tt>
+is used.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>replacefilterfile</td>
+
+<td VALIGN=TOP>valid property file. Each property will be treated as a
+replacefilter where <tt>token</tt> is the name of the property and <tt>value</tt>
+is the properties value.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be included. All files are included when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an include pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be excluded. No files (except default excludes) are excluded when
+omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an exclude pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>indicates whether default excludes should be used or not
+("yes"/"no"). Default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="rmic"></a>
+<h2>
+rmic</h2>
+Runs the rmic compiler for a certain class.
+<p>Rmic can be run on a single class (as specified with the classname attribute)
+or a number of classes at once (all classes below base that are neither
+_Stub nor _Skel classes). If you want to rmic a single class and this class
+is a class nested into another class, you have to specify the classname
+in the form <tt>Outer$$Inner</tt> instead of <tt>Outer.Inner</tt>.
+<p>It is possible to refine the set of files that are being rmiced. This
+can be done with the <i>includes</i>, <i>includesfile</i>, <i>excludes</i>,
+<i>excludesfile</i>
+and <i>defaultexcludes</i> attributes. With the <i>includes</i> or <i>includesfile</i>
+attribute you specify the files you want to have included by using patterns.
+The <i>exclude</i> or <i>excludesfile</i> attribute is used to specify
+the files you want to have excluded. This is also done with patterns. And
+finally with the <i>defaultexcludes</i> attribute, you can specify whether
+you want to use default exclusions or not.
+<ul>
+<li>
+sun (the standard compiler of the JDK)</li>
+
+<li>
+weblogic</li>
+</ul>
+
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>base</td>
+
+<td VALIGN=TOP>the location to store the compiled files.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classname</td>
+
+<td VALIGN=TOP>the class for which to run <tt>rmic</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>filtering</td>
+
+<td VALIGN=TOP>indicates whether token filtering should take place</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>sourcebase</td>
+
+<td VALIGN=TOP>Pass the "-keepgenerated" flag to rmic and move the generated
+source file to the base directory.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>stubversion</td>
+
+<td VALIGN=TOP>Specify the JDK version for the generated stub code. Specify
+"1.1" to pass the "-v1.1" option to rmic.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpath</td>
+
+<td VALIGN=TOP>The classpath to use during compilation</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpathref</td>
+
+<td VALIGN=TOP>The classpath to use during compilation, given as reference
+to a PATH defined elsewhere</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be included. All files are included when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an include pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be excluded. No files (except default excludes) are excluded when
+omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an exclude pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>indicates whether default excludes should be used or not
+("yes"/"no"). Default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>verify</td>
+
+<td VALIGN=TOP>check that classes implement Remote before handing them
+to rmic (default is false)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>iiop</td>
+
+<td VALIGN=TOP>indicates that portable (RMI/IIOP) stubs should be generated</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>iiopopts</td>
+
+<td VALIGN=TOP>additional arguments for IIOP class generation</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>idl</td>
+
+<td VALIGN=TOP>indicates that IDL output files should be generated</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>idlopts</td>
+
+<td VALIGN=TOP>additional arguments for IDL file generation</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>debug</td>
+
+<td VALIGN=TOP>generate debug info (passes -g to rmic). Defaults to false.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includeAntRuntime</td>
+
+<td VALIGN=TOP>whether to include the Ant run-time libraries; defaults
+to <tt>yes</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includeJavaRuntime</td>
+
+<td VALIGN=TOP>whether to include the default run-time libraries from the
+executing VM; defaults to <tt>no</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>extdirs</td>
+
+<td VALIGN=TOP>location of installed extensions.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>compiler</td>
+
+<td VALIGN=TOP>The compiler implementation to use. If this attribute is
+not set, the value of the <tt>build.rmic</tt> property, if set, will be
+used. Otherwise, the default compiler for the current VM will be used.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="zip"></a>
+<h2>
+zip</h2>
+Creates a zipfile.
+<p>The <i>basedir</i> attribute is the reference directory from where to
+zip.
+<p>Note that file permissions will not be stored in the resulting zipfile.
+<p>It is possible to refine the set of files that are being zipped. This
+can be done with the <i>includes</i>, <i>includesfile</i>, <i>excludes</i>,
+<i>excludesfile</i>
+and <i>defaultexcludes</i> attributes. With the <i>includes</i> or <i>includesfile</i>
+attribute you specify the files you want to have included by using patterns.
+The <i>exclude</i> or <i>excludesfile</i> attribute is used to specify
+the files you want to have excluded. This is also done with patterns. And
+finally with the <i>defaultexcludes</i> attribute, you can specify whether
+you want to use default exclusions or not.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>destfile</td>
+
+<td VALIGN=TOP>the zip-file to create.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>basedir</td>
+
+<td VALIGN=TOP>the directory from which to zip the files.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>compress</td>
+
+<td VALIGN=TOP>Not only store data but also compress them, defaults to
+true</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>encoding</td>
+
+<td VALIGN=TOP>The character encoding to use for filenames inside the zip
+file. For a list of possible values see <a href="http://java.sun.com/products/jdk/1.2/docs/guide/internat/encoding.doc.html">http://java.sun.com/products/jdk/1.2/docs/guide/internat/encoding.doc.html</a>.
+Defaults to the platform's default character encoding.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>filesonly</td>
+
+<td VALIGN=TOP>Store only file entries, defaults to false</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be included. All files are included when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an include pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be excluded. No files (except default excludes) are excluded when
+omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an exclude pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>indicates whether default excludes should be used or not
+("yes"/"no"). Default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>update</td>
+
+<td VALIGN=TOP>indicates whether to update or overwrite the destination
+file if it already exists.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>whenempty</td>
+
+<td VALIGN=TOP>behavior when no files match. Valid values are "fail", "skip",
+and "create". Default is "skip".</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>duplicate</td>
+
+<td VALIGN=TOP>behavior when a duplicate file is found. Valid values are
+"add", "preserve", and "fail". The default value is "add".&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<h2>
+<a NAME="javac"></a></h2>
+
+<h2>
+javac</h2>
+Compiles a Java source tree.
+<br>The source and destination directory will be recursively scanned for
+Java source files to compile. Only Java files that have no corresponding
+<tt>.class</tt>
+file or where the class file is older than the <tt>.java</tt> file will
+be compiled.
+<p>Note: Ant uses only the names of the source and class files to find
+the classes that need a rebuild. It will not scan the source and therefore
+will have no knowledge about nested classes, classes that are named different
+from the source file, and so on.
+<p>When the source files are part of a package, the directory structure
+of the source tree should follow the package hierarchy.
+<p>It is possible to refine the set of files that are being compiled. This
+can be done with the <tt>includes</tt>, <tt>includesfile</tt>, <tt>excludes</tt>,
+and <tt>excludesfile</tt> attributes. With the <tt>includes</tt> or <tt>includesfile</tt>
+attribute, you specify the files you want to have included. The <tt>exclude</tt>
+or <tt>excludesfile</tt> attribute is used to specify the files you want
+to have excluded. In both cases, the list of files can be specified by
+either the filename, relative to the directory(s) specified in the <tt>srcdir</tt>
+attribute or nested <tt>&lt;src></tt> element(s), or by using wildcard
+patterns.
+<ul>
+<li>
+<tt>classic</tt> (the standard compiler of JDK 1.1/1.2); <tt>javac1.1</tt>
+and <tt>javac1.2</tt> can be used as aliases.</li>
+
+<li>
+<tt>modern</tt> (the standard compiler of JDK 1.3/1.4) <tt>javac1.3</tt>
+and <tt>javac1.4</tt> can be used as aliases.</li>
+
+<li>
+<tt>jikes</tt> (the <a href="http://oss.software.ibm.com/developerworks/opensource/jikes/project" target="_top">Jikes</a>
+compiler).</li>
+
+<li>
+<tt>jvc</tt> (the Command-Line Compiler from Microsoft's SDK for Java /
+Visual J++)<tt>microsoft</tt> can be used as an alias.</li>
+
+<li>
+<tt>kjc</tt> (the <a href="http://www.dms.at/kopi/" target="_top">kopi</a>
+compiler).</li>
+
+<li>
+<tt>gcj</tt> (the gcj compiler from gcc).</li>
+
+<li>
+<tt>sj</tt> (Symantec java compiler) <tt>symantec</tt> can be used as an
+alias.</li>
+
+<li>
+<tt>extJavac</tt> (run either modern or classic in a JVM of its own).</li>
+</ul>
+The default is <tt>javac1.x</tt> with <tt>x</tt> depending on the JDK version
+you use while you are running Ant. If you wish to use a different compiler
+interface than those supplied, you can write a class that implements the
+CompilerAdapter interface (<tt>package org.apache.tools.ant.taskdefs.compilers</tt>).
+Supply the full classname in the <tt>build.compiler</tt> property or the
+<tt>compiler</tt>
+attribute.
+<p>The fork attribute overrides the <tt>build.compiler</tt> property or
+<tt>compiler</tt>
+attribute setting and expects a JDK1.1 or higher to be set in <tt>JAVA_HOME</tt>.
+<p>You can also use the <tt>compiler</tt> attribute to tell Ant which JDK
+version it shall assume when it puts together the command line switches
+- even if you set <tt>fork="true"</tt>. This is useful if you want to run
+the compiler of JDK 1.1 while you current JDK is 1.2+. If you use <tt>compiler="javac1.1"</tt>
+and (for example) <tt>depend="true"</tt> Ant will use the command line
+switch <tt>-depend</tt> instead of <tt>-Xdepend</tt>.
+<p>This task will drop all entries that point to non-existent files/directories
+from the classpath it passes to the compiler.
+<p><b>Windows Note:</b>When the modern compiler is used in unforked mode
+on Windows, it locks up the files present in the classpath of the <tt>&lt;javac></tt>
+task, and does not release them. The side effect of this is that you will
+not be able to delete or move those files later on in the build. The workaround
+is to fork when invoking the compiler.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>srcdir</td>
+
+<td VALIGN=TOP>Location of the java files.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes, unless nested <tt>&lt;src></tt> elements
+are present.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>destdir</td>
+
+<td VALIGN=TOP>Location to store the class files.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP>Comma- or space-separated list of files (may be specified
+using wildcard patterns) that must be included; all <tt>.java</tt> files
+are included when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includesfile</td>
+
+<td VALIGN=TOP>The name of a file that contains a list of files to include
+(may be specified using wildcard patterns).</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP>Comma- or space-separated list of files (may be specified
+using wildcard patterns) that must be excluded; no files (except default
+excludes) are excluded when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludesfile</td>
+
+<td VALIGN=TOP>The name of a file that contains a list of files to exclude
+(may be specified using wildcard patterns).</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpath</td>
+
+<td VALIGN=TOP>The classpath to use.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>sourcepath</td>
+
+<td VALIGN=TOP>The sourcepath to use; defaults to the value of the srcdir
+attribute (or nested <tt>&lt;src></tt> elements). To suppress the sourcepath
+switch, use <tt>sourcepath=""</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>bootclasspath</td>
+
+<td VALIGN=TOP>Location of bootstrap class files.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpathref</td>
+
+<td VALIGN=TOP>The classpath to use, given as a reference to a path defined
+elsewhere.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>sourcepathref</td>
+
+<td VALIGN=TOP>The sourcepath to use, given as a reference to a path defined
+elsewhere.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>bootclasspathref</td>
+
+<td VALIGN=TOP>Location of bootstrap class files, given as a reference
+to a path defined elsewhere.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>extdirs</td>
+
+<td VALIGN=TOP>Location of installed extensions.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>encoding</td>
+
+<td VALIGN=TOP>Encoding of source files. (Note: gcj doesn't support this
+option yet.)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>nowarn</td>
+
+<td VALIGN=TOP>Indicates whether the <tt>-nowarn</tt> switch should be
+passed to the compiler; defaults to <tt>off</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>debug</td>
+
+<td VALIGN=TOP>Indicates whether source should be compiled with debug information;
+defaults to <tt>off</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>debuglevel</td>
+
+<td VALIGN=TOP>Keyword list to be appended to the <tt>-g</tt> command-line
+switch. This will be ignored by all implementations except <tt>modern</tt>
+and <tt>classic(ver >= 1.2)</tt>. Legal values are <tt>none</tt> or a comma-separated
+list of the following keywords: <tt>lines</tt>, <tt>vars</tt>, and <tt>source</tt>.
+If <tt>debuglevel</tt> is not specified, by default, <tt>:none</tt> will
+be appended to <tt>-g</tt>. If <tt>debug</tt> is not turned on, this attribute
+will be ignored.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>optimize</td>
+
+<td VALIGN=TOP>Indicates whether source should be compiled with optimization;
+defaults to <tt>off</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>deprecation</td>
+
+<td VALIGN=TOP>Indicates whether source should be compiled with deprecation
+information; defaults to <tt>off</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>target</td>
+
+<td VALIGN=TOP>Generate class files for specific VM version (e.g., <tt>1.1</tt>
+or <tt>1.2</tt>). <b>Note that the default value depends on the JVM that
+is running Ant. In particular, if you use JDK 1.4 the generated classes
+will not be usable for a 1.1 Java VM unless you explicitly set this attribute
+to the value 1.1 (which is the default value for JDK 1.1 to 1.3).</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>verbose</td>
+
+<td VALIGN=TOP>Asks the compiler for verbose output.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>depend</td>
+
+<td VALIGN=TOP>Enables dependency-tracking for compilers that support this
+(<tt>jikes</tt> and <tt>classic</tt>).</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includeAntRuntime</td>
+
+<td VALIGN=TOP>Whether to include the Ant run-time libraries in the classpath;
+defaults to <tt>yes</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includeJavaRuntime</td>
+
+<td VALIGN=TOP>Whether to include the default run-time libraries from the
+executing VM in the classpath; defaults to <tt>yes</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>fork</td>
+
+<td VALIGN=TOP>Whether to execute <tt>javac</tt> using the JDK compiler
+externally; defaults to <tt>no</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>executable</td>
+
+<td VALIGN=TOP>Complete path to the <tt>javac</tt> executable to use in
+case of <tt>fork="yes"</tt>. Defaults to the compiler of the Java version
+that is currently running Ant. Ignored if <tt>fork="no"</tt></td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>memoryInitialSize</td>
+
+<td VALIGN=TOP>The initial size of the memory for the underlying VM, if
+<tt>javac</tt>
+is run externally; ignored otherwise. Defaults to the standard VM memory
+setting. (Examples: <tt>83886080</tt>, <tt>81920k</tt>, or <tt>80m</tt>)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>memoryMaximumSize</td>
+
+<td VALIGN=TOP>The maximum size of the memory for the underlying VM, if
+<tt>javac</tt>
+is run externally; ignored otherwise. Defaults to the standard VM memory
+setting. (Examples: <tt>83886080</tt>, <tt>81920k</tt>, or <tt>80m</tt>)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>failonerror</td>
+
+<td VALIGN=TOP>Indicates whether the build will continue even if there
+are compilation errors; defaults to <tt>true</tt>.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>source</td>
+
+<td VALIGN=TOP>Value of the <tt>-source</tt> command-line switch; will
+be ignored by all implementations except <tt>javac1.4</tt> (or <tt>modern</tt>
+when Ant is not running in a 1.3 VM) and <tt>jikes</tt>.If you use this
+attribute together with <tt>jikes</tt>, you must make sure that your version
+of jikes supports the <tt>-source</tt> switch.Legal values are <tt>1.3</tt>
+and <tt>1.4</tt> by default, no <tt>-source</tt> argument will be used
+at all.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>compiler</td>
+
+<td VALIGN=TOP>The compiler implementation to use. If this attribute is
+not set, the value of the <tt>build.compiler</tt> property, if set, will
+be used. Otherwise, the default compiler for the current VM will be used.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>listfiles</td>
+
+<td VALIGN=TOP>Indicates whether the source files to be compiled will be
+listed; defaults to <tt>no</tt>.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<h2>
+<a NAME="javadoc"></a></h2>
+
+<h2>
+javadoc</h2>
+Generates code xs:documentation using the javadoc tool.
+<p>The source directory will be recursively scanned for Java source files
+to process but only those matching the inclusion rules, and not matching
+the exclusions rules will be passed to the javadoc tool. This allows wildcards
+to be used to choose between package names, reducing verbosity and management
+costs over time. This task, however, has no notion of "changed" files,
+unlike the javac task. This means all packages will be processed each time
+this task is run. In general, however, this task is used much less frequently.
+<p>This task works seamlessly between different javadoc versions (1.1,
+1.2 and 1.4), with the obvious restriction that the 1.2 attributes will
+be ignored if run in a 1.1 VM.
+<p>NOTE: since javadoc calls System.exit(), javadoc cannot be run inside
+the same VM as ant without breaking functionality. For this reason, this
+task always forks the VM. This overhead is not significant since javadoc
+is normally a heavy application and will be called infrequently.
+<p>NOTE: the packagelist attribute allows you to specify the list of packages
+to document outside of the Ant file. It's a much better practice to include
+everything inside the build.xml file. This option was added in order to
+make it easier to migrate from regular makefiles, where you would use this
+option of javadoc. The packages listed in packagelist are not checked,
+so the task performs even if some packages are missing or broken. Use this
+option if you wish to convert from an existing makefile. Once things are
+running you should then switch to the regular notation.
+<p>In the table below, 1.1 means available if your current Java VM is a
+1.1 VM, 1.2 for either 1.2 or 1.3 and 1.4 for a 1.4 Java VM. 1.2+ means
+any VM of at least version 1.2.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Availability</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>sourcepath</td>
+
+<td VALIGN=TOP>Specify where to find source files</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER ROWSPAN="3">At least one of the three or nested <tt>&lt;sourcepath></tt>,
+<tt>&lt;fileset></tt>
+or <tt>&lt;packageset></tt></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>sourcepathref</td>
+
+<td VALIGN=TOP>Specify where to find source files by reference to a PATH
+defined elsewhere.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>sourcefiles</td>
+
+<td VALIGN=TOP>Comma separated list of source files</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>destdir</td>
+
+<td VALIGN=TOP>Destination directory for output files</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes, unless a doclet has been specified.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>maxmemory</td>
+
+<td VALIGN=TOP>Max amount of memory to allocate to the javadoc VM</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>packagenames</td>
+
+<td VALIGN=TOP>Comma separated list of package files (with terminating
+wildcard)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>packageList</td>
+
+<td VALIGN=TOP>The name of a file containing the packages to process</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpath</td>
+
+<td VALIGN=TOP>Specify where to find user class files</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Bootclasspath</td>
+
+<td VALIGN=TOP>Override location of class files loaded by the bootstrap
+class loader</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpathref</td>
+
+<td VALIGN=TOP>Specify where to find user class files by reference to a
+PATH defined elsewhere.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>bootclasspathref</td>
+
+<td VALIGN=TOP>Override location of class files loaded by the bootstrap
+class loader by reference to a PATH defined elsewhere.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Extdirs</td>
+
+<td VALIGN=TOP>Override location of installed extensions</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Overview</td>
+
+<td VALIGN=TOP>Read overview xs:documentation from HTML file</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>access</td>
+
+<td VALIGN=TOP>Access mode: one of <tt>public</tt>, <tt>protected</tt>,
+<tt>package</tt>,
+or <tt>private</tt></td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No (default <tt>protected</tt>)</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Public</td>
+
+<td VALIGN=TOP>Show only public classes and members</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Protected</td>
+
+<td VALIGN=TOP>Show protected/public classes and members (default)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Package</td>
+
+<td VALIGN=TOP>Show package/protected/public classes and members</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Private</td>
+
+<td VALIGN=TOP>Show all classes and members</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Old</td>
+
+<td VALIGN=TOP>Generate output using JDK 1.1 emulating doclet</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Verbose</td>
+
+<td VALIGN=TOP>Output messages about what Javadoc is doing</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Locale</td>
+
+<td VALIGN=TOP>Locale to be used, e.g. en_US or en_US_WIN</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Encoding</td>
+
+<td VALIGN=TOP>Source file encoding name</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Version</td>
+
+<td VALIGN=TOP>Include @version paragraphs</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Use</td>
+
+<td VALIGN=TOP>Create class and package usage pages</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Author</td>
+
+<td VALIGN=TOP>Include @author paragraphs</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Splitindex</td>
+
+<td VALIGN=TOP>Split index into one file per letter</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Windowtitle</td>
+
+<td VALIGN=TOP>Browser window title for the xs:documentation (text)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Doctitle</td>
+
+<td VALIGN=TOP>Include title for the package index(first) page (html-code)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Header</td>
+
+<td VALIGN=TOP>Include header text for each page (html-code)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>Footer</td>
+
+<td VALIGN=TOP>Include footer text for each page (html-code)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>bottom</td>
+
+<td VALIGN=TOP>Include bottom text for each page (html-code)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>link</td>
+
+<td VALIGN=TOP>Create links to javadoc output at the given URL</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>linkoffline</td>
+
+<td VALIGN=TOP>Link to docs at &lt;url> using package list at &lt;url2>
+- separate the URLs by using a space character.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>group</td>
+
+<td VALIGN=TOP>Group specified packages together in overview page. The
+format is as described below.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>notree</td>
+
+<td VALIGN=TOP>Do not generate class hierarchy</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>noindex</td>
+
+<td VALIGN=TOP>Do not generate index</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>nohelp</td>
+
+<td VALIGN=TOP>Do not generate help link</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>nonavbar</td>
+
+<td VALIGN=TOP>Do not generate navigation bar</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>serialwarn</td>
+
+<td VALIGN=TOP>Generate warning about @serial tag</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>helpfile</td>
+
+<td VALIGN=TOP>Specifies the HTML help file to use</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>stylesheetfile</td>
+
+<td VALIGN=TOP>Specifies the CSS stylesheet to use</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>charset</td>
+
+<td VALIGN=TOP>Charset for cross-platform viewing of generated xs:documentation</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>docencoding</td>
+
+<td VALIGN=TOP>Output file encoding name</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>doclet</td>
+
+<td VALIGN=TOP>Specifies the class file that starts the doclet used in
+generating the xs:documentation.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>docletpath</td>
+
+<td VALIGN=TOP>Specifies the path to the doclet class file that is specified
+with the -doclet option.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>docletpathref</td>
+
+<td VALIGN=TOP>Specifies the path to the doclet class file that is specified
+with the -doclet option by reference to a PATH defined elsewhere.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>additionalparam</td>
+
+<td VALIGN=TOP>Lets you add additional parameters to the javadoc command
+line. Useful for doclets. Parameters containing spaces need to be quoted
+using &amp;quot;.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>failonerror</td>
+
+<td VALIGN=TOP>Stop the buildprocess if the command exits with a returncode
+other than 0.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludepackagenames</td>
+
+<td VALIGN=TOP>comma separated list of packages you don't want docs for.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>indicates whether default excludes should be used (<tt>yes</tt>
+| <tt>no</tt>); default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>all</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>useexternalfile</td>
+
+<td VALIGN=TOP>indicates whether the sourcefile name specified in srcfiles
+or as nested source elements should be written to a temporary file to make
+the command line shorter. Also applies to the package names specified via
+the packagenames attribute or nested package elements. (<tt>yes</tt> |
+<tt>no</tt>).
+Default is no.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.2+</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>source</td>
+
+<td VALIGN=TOP>Necessary to enable javadoc to handle assertions present
+in J2SE v 1.4 source code. Set this to "1.4" to documents code that compiles
+using <tt>"javac -source 1.4"</tt>. Will be ignored if you use a custom
+doclet.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>1.4</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="get"></a>
+<h2>
+get</h2>
+Gets a file from a URL. When the verbose option is "on", this task displays
+a '.' for every 100 Kb retrieved. Any URL schema supported by the runtime
+is valid here, including http:, ftp: and jar:; https: is only valid if
+the appropriate support is added to the pre-1.4 Java runtimes.
+<p>This task should be preferred above the CVS task when fetching remote
+content. CVS is significantly slower than loading a compressed archive
+compared to http/ftp.
+<br>The <i>usetimestamp</i> option enables you to control downloads so
+that the remote file is only fetched if newer than the local copy. If there
+is no local copy, the download always takes place. When a file is downloaded,
+the timestamp of the downloaded file is set to the remote timestamp, if
+the JVM is Java1.2 or later. NB: This timestamp facility only works on
+downloads using the HTTP protocol.
+<p>A username and password can be specified, in which case basic 'slightly
+encoded plain text' authentication is used. This is only a secure authentication
+mechanism over an HTTPS link.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>src</td>
+
+<td VALIGN=TOP>the URL from which to retrieve a file.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>dest</td>
+
+<td VALIGN=TOP>the file where to store the retrieved file.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>verbose</td>
+
+<td VALIGN=TOP>show verbose progress information ("on"/"off").</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No; default "false"</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>ignoreerrors</td>
+
+<td VALIGN=TOP>Log errors but don't treat as fatal.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No; default "false"</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>usetimestamp</td>
+
+<td VALIGN=TOP>conditionally download a file based on the timestamp of
+the local copy. HTTP only</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No; default "false"</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>username</td>
+
+<td VALIGN=TOP>username for 'BASIC' http authentication</td>
+
+<td ALIGN=CENTER VALIGN=TOP>if password is set</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>password</td>
+
+<td VALIGN=TOP>password: required&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>if username is set</td>
+</tr>
+</table>
+
+<p><a NAME="cvs"></a>
+<h2>
+cvs</h2>
+Handles packages/modules retrieved from a CVS repository.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>command</td>
+
+<td VALIGN=TOP>the CVS command to execute.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default "checkout".</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>compression</td>
+
+<td VALIGN=TOP><tt>true</tt> or <tt>false</tt> - if set to true, this is
+the same as compressionlevel="3"</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No. Defaults to false.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>compressionlevel</td>
+
+<td VALIGN=TOP>A number between 1 and 9 (corresponding to possible values
+for CVS&amp;apos; <tt>-z#</tt> argument). Any other value is treated as
+compression="false"</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No. Defaults to no compression.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>cvsRoot</td>
+
+<td VALIGN=TOP>the CVSROOT variable.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>cvsRsh</td>
+
+<td VALIGN=TOP>the CVS_RSH variable.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>dest</td>
+
+<td VALIGN=TOP>the directory where the checked out files should be placed.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default is project's basedir.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>package</td>
+
+<td VALIGN=TOP>the package/module to check out.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>tag</td>
+
+<td VALIGN=TOP>the tag of the package/module to check out.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>date</td>
+
+<td VALIGN=TOP>Use the most recent revision no later than the given date</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>quiet</td>
+
+<td VALIGN=TOP>suppress informational messages.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default "false"</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>noexec</td>
+
+<td VALIGN=TOP>report only, don't change any files.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default to "false"</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>output</td>
+
+<td VALIGN=TOP>the file to direct standard output from the command.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default output to ANT Log as MSG_INFO.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>error</td>
+
+<td VALIGN=TOP>the file to direct standard error from the command.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default error to ANT Log as MSG_WARN.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>append</td>
+
+<td VALIGN=TOP>whether to append output/error when redirecting to a file.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default to "false".</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>port</td>
+
+<td VALIGN=TOP>Port used by CVS to communicate with the server.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default port 2401.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>passfile</td>
+
+<td VALIGN=TOP>Password file to read passwords from.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default file ~/.cvspass.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>failonerror</td>
+
+<td VALIGN=TOP>Stop the build process if the command exits with a return
+code other than 0. Defaults to false</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="tar"></a>
+<h2>
+tar</h2>
+Creates a tar archive.
+<p>The <i>basedir</i> attribute is the reference directory from where to
+tar.
+<p>This task is a directory based task and, as such, forms an implicit
+Fileset. This defines which files, relative to the <i>basedir</i>, will
+be included in the archive. The tar task supports all the attributes of
+Fileset to refine the set of files to be included in the implicit fileset.
+<p>In addition to the implicit fileset, the tar task supports nested filesets.
+These filesets are extended to allow control over the access mode, username
+and groupname to be applied to the tar entries. This is useful, for example,
+when preparing archives for Unix systems where some files need to have
+execute permission.
+<p>Early versions of tar did not support path lengths greater than 100
+characters. Modern versions of tar do so, but in incompatible ways. The
+behaviour of the tar task when it encounters such paths is controlled by
+the <i>longfile</i> attribute. If the longfile attribute is set to <tt>fail</tt>,
+any long paths will cause the tar task to fail. If the longfile attribute
+is set to <tt>truncate</tt>, any long paths will be truncated to the 100
+character maximum length prior to adding to the archive. If the value of
+the longfile attribute is set to <tt>omit</tt> then files containing long
+paths will be omitted from the archive. Either option ensures that the
+archive can be untarred by any compliant version of tar. If the loss of
+path or file information is not acceptable, and it rarely is, longfile
+may be set to the value <tt>gnu</tt>. The tar task will then produce a
+GNU tar file which can have arbitrary length paths. Note however, that
+the resulting archive will only be able to be untarred with GNU tar. The
+default for the longfile attribute is <tt>warn</tt> which behaves just
+like the gnu option except that it produces a warning for each file path
+encountered that does not match the limit.
+<p>This task can perform compression by setting the compression attribute
+to "gzip" or "bzip2".
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>destfile</td>
+
+<td VALIGN=TOP>the tar-file to create.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>basedir</td>
+
+<td VALIGN=TOP>the directory from which to tar the files.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>longfile</td>
+
+<td VALIGN=TOP>Determines how long files (>100 chars) are to be handled.
+Allowable values are "truncate", "fail", "warn", "omit" and "gnu". Default
+is "warn".</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be included. All files are included when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an include pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP>comma- or space-separated list of patterns of files that
+must be excluded. No files (except default excludes) are excluded when
+omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludesfile</td>
+
+<td VALIGN=TOP>the name of a file. Each line of this file is taken to be
+an exclude pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>indicates whether default excludes should be used or not
+("yes"/"no"). Default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>compression</td>
+
+<td VALIGN=TOP>compression method. Allowable values are "none", "gzip"
+and "bzip2". Default is "none".</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="exec"></a>
+<h2>
+exec</h2>
+Executes a system command. When the <i>os</i> attribute is specified, then
+the command is only executed when Ant is run on one of the specified operating
+systems.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>executable</td>
+
+<td VALIGN=TOP>the command to execute without any command line arguments.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>dir</td>
+
+<td VALIGN=TOP>the directory in which the command should be executed.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>os</td>
+
+<td VALIGN=TOP>list of Operating Systems on which the command may be executed.
+If the current OS's name is contained in this list, the command will be
+executed. The OS's name is determined by the Java Virtual machine and is
+set in the "os.name" system property.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>output</td>
+
+<td VALIGN=TOP>the file to which the output of the command should be redirected.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>append</td>
+
+<td VALIGN=TOP>whether output should be appended to or overwrite an existing
+file. Defaults to false.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>outputproperty</td>
+
+<td VALIGN=TOP>the name of a property in which the output of the command
+should be stored.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>resultproperty</td>
+
+<td VALIGN=TOP>the name of a property in which the return code of the command
+should be stored. Only of interest if failonerror=false</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>timeout</td>
+
+<td VALIGN=TOP>Stop the command if it doesn't finish within the specified
+time (given in milliseconds).</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>failonerror</td>
+
+<td VALIGN=TOP>Stop the buildprocess if the command exits with a returncode
+other than 0. Defaults to false</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>failifexecutionfails</td>
+
+<td VALIGN=TOP>Stop the build if we can't start the program. Defaults to
+true.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>newenvironment</td>
+
+<td VALIGN=TOP>Do not propagate old environment when new environment variables
+are specified.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default is <i>false</i></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>vmlauncher</td>
+
+<td VALIGN=TOP>Run command using the Java VM's execution facilities where
+available. If set to false the underlying OS's shell, either directly or
+through the antRun scripts, will be used. Under some operating systems,
+this gives access to facilities not normally available through the VM including,
+under Windows, being able to execute scripts, rather than their associated
+interpreter. If you want to specify the name of the executable as a relative
+path to the directory given by the dir attribute, it may become necessary
+to set vmlauncher to false as well.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No, default is <i>true</i></td>
+</tr>
+</table>
+
+<p><a NAME="java"></a>
+<h2>
+java</h2>
+Executes a Java class within the running (Ant) VM or forks another VM if
+specified.
+<p>If odd things go wrong when you run this task, set fork="true" to use
+a new JVM.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classname</td>
+
+<td VALIGN=TOP>the Java class to execute.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Either jar or classname</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>jar</td>
+
+<td VALIGN=TOP>the location of the jar file to execute (must have a Main-Class
+entry in the manifest). Fork must be set to true if this option is selected.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Either jar or classname</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpath</td>
+
+<td VALIGN=TOP>the classpath to use.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>classpathref</td>
+
+<td VALIGN=TOP>the classpath to use, given as reference to a PATH defined
+elsewhere.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>fork</td>
+
+<td VALIGN=TOP>if enabled triggers the class execution in another VM (disabled
+by default)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>jvm</td>
+
+<td VALIGN=TOP>the command used to invoke the Java Virtual Machine, default
+is 'java'. The command is resolved by java.lang.Runtime.exec(). Ignored
+if fork is disabled.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>maxmemory</td>
+
+<td VALIGN=TOP>Max amount of memory to allocate to the forked VM (ignored
+if fork is disabled)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>failonerror</td>
+
+<td VALIGN=TOP>Stop the buildprocess if the command exits with a returncode
+other than 0. Default is "false"</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>dir</td>
+
+<td VALIGN=TOP>The directory to invoke the VM in. (ignored if fork is disabled)</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>output</td>
+
+<td VALIGN=TOP>Name of a file to write the output to.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>append</td>
+
+<td VALIGN=TOP>whether output should be appended to or overwrite an existing
+file. Defaults to false.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>newenvironment</td>
+
+<td VALIGN=TOP>Do not propagate old environment when new environment variables
+are specified. Default is "false" (ignored if fork is disabled).</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>timeout</td>
+
+<td VALIGN=TOP>Stop the command if it doesn't finish within the specified
+time (given in milliseconds). <b>It is highly recommended to use this feature
+only if fork is enabled.</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="mkdir"></a>
+<h2>
+mkdir</h2>
+Creates a directory. Also non-existent parent directories are created,
+when necessary.
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>dir</td>
+
+<td VALIGN=TOP>the directory to create.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes</td>
+</tr>
+</table>
+
+<p><a NAME="delete>       <h2><a name=" delete"></a>
+<br>&nbsp;
+<h2>
+Delete</h2>
+Deletes a single file, a specified directory and all its files and subdirectories,
+or a set of files specified by one or more
+FileSets. When specifying a
+set of files, empty directories are <i>not</i> removed by
+default. To remove
+empty directories, use the <tt>includeEmptyDirs</tt> attribute.
+<br>&nbsp;
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>file</td>
+
+<td VALIGN=TOP>The file to delete, specified as either the simple filename
+(if the file exists in the current base directory), a relative-path filename,
+or a full-path filename.</td>
+
+<td ALIGN=CENTER VALIGN=CENTER ROWSPAN="2">At least one of the two, unless
+a <tt>&lt;fileset></tt> is specified.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>dir</td>
+
+<td VALIGN=TOP>The directory to delete, including all its files and subdirectories.
+<br><b>Note:</b> <tt>dir</tt> is <i>not</i> used to specify a directory
+name for <tt>file</tt>; <tt>file</tt> and <tt>dir</tt> are independent
+of each other.
+<br><b>WARNING:</b> Do <b>not</b> set <tt>dir</tt> to <tt>"."</tt>, <tt>"${basedir}"</tt>,
+or the full-pathname equivalent unless you truly <i>intend</i> to recursively
+remove the entire contents of the current base directory (and the base
+directory itself, if different from the current working directory).</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>verbose</td>
+
+<td VALIGN=TOP>Show the name of each deleted file ("true"/"false"). Default
+is "false" when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>quiet</td>
+
+<td VALIGN=TOP>If the specified file or directory does not exist, do not
+display a diagnostic message (unless Ant has been invoked with the <tt>?verbose</tt>
+or <tt>?debug</tt> switches) or modify the exit status to reflect an error.
+When set to "true", if a file or directory cannot be deleted, no error
+is reported. This setting emulates the <tt>-f</tt> option to the Unix <i>rm</i>
+command. Default is "false". Setting this to "true" implies setting <tt>failonerror</tt>
+to "false".&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>failonerror</td>
+
+<td VALIGN=TOP>Controls whether an error (such as a failure to delete a
+file) stops the build or is merely reported to the screen. Only relevant
+if <tt>quiet</tt> is "false". Default is "true".&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includeEmptyDirs</td>
+
+<td VALIGN=TOP>Set to "true" to delete empty directories when using filesets.
+Default is "false".</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includes</td>
+
+<td VALIGN=TOP><i>Deprecated.</i> Use <tt>&lt;fileset></tt>. Comma- or
+space-separated list of patterns of files that must be deleted. All files
+are relative to the directory specified in <tt>dir</tt>.&nbsp;</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>includesfile</td>
+
+<td VALIGN=TOP><i>Deprecated.</i> Use <tt>&lt;fileset></tt>. The name of
+a file. Each line of this file is taken to be an include pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludes</td>
+
+<td VALIGN=TOP><i>Deprecated.</i> Use <tt>&lt;fileset></tt>. Comma- or
+space-separated list of patterns of files that must be excluded from the
+deletion list. All files are relative to the directory specified in <tt>dir</tt>.
+No files (except default excludes) are excluded when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>excludesfile</td>
+
+<td VALIGN=TOP><i>Deprecated.</i> Use <tt>&lt;fileset></tt>. The name of
+a file. Each line of this file is taken to be an exclude pattern</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>defaultexcludes</td>
+
+<td VALIGN=TOP>Indicates whether default excludes should be used or not
+("yes"/"no"). Default excludes are used when omitted.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+</table>
+
+<p><a NAME="echo"></a>
+<h2>
+echo</h2>
+Echoes a message to the current loggers and listeners which means <tt>System.out</tt>
+unless overridden. A <tt>level</tt> can be specified, which controls at
+what logging level the message is filtered at.
+<p>The task can also echo to a file, in which case the option to append
+rather than overwrite the file is available, and the <tt>level</tt> option
+is ignored
+<h3>
+Parameters</h3>
+
+<table BORDER CELLSPACING=0 CELLPADDING=2 >
+<tr>
+<td VALIGN=TOP><b>Attribute</b></td>
+
+<td VALIGN=TOP><b>Description</b></td>
+
+<td ALIGN=CENTER VALIGN=TOP><b>Required</b></td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>message</td>
+
+<td VALIGN=TOP>the message to echo.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>Yes, unless data is included in a character
+section within this element.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>file</td>
+
+<td VALIGN=TOP>the file to write the message to.</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>append</td>
+
+<td VALIGN=TOP>Append to an existing file?</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No - default is false.</td>
+</tr>
+
+<tr>
+<td VALIGN=TOP>level</td>
+
+<td VALIGN=TOP>Control the level at which this message is reported. One
+of "error", "warning", "info", "verbose", "debug"</td>
+
+<td ALIGN=CENTER VALIGN=TOP>No - default is "warning".</td>
+</tr>
+</table>
+
+<hr WIDTH="100%">
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="XMLEspresso XML Editor" url="http://www.nubean.com/eclipse/site">
+      XMLEspresso XML Editor
+   </description>
+   <feature url="features/com.nubean.xmlespresso_8.0.0.201206142237.jar" id="com.nubean.xmlespresso" version="8.0.0.201206142237">
+      <category name="XMLEspresso_XML_Editor"/>
+   </feature>
+   <category-def name="XMLEspresso_XML_Editor" label="XMLEspresso XML Editor">
+      <description>
+         XMLEspresso XML Editor
+      </description>
+   </category-def>
+</site>

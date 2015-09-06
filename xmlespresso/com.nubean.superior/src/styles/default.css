@@ -1,0 +1,49 @@
+pre {
+        color:#000000;
+        font-size:12pt;
+        font-family:Arial;
+        font-weight:normal;
+        font-size-adjust:z;
+}
+
+h2 {
+        color:#000000;
+        font-size:16pt;
+        font-family:Arial;
+        font-weight:bold;
+        font-size-adjust:z;
+}
+
+h3 {
+        color:#000000;
+        font-size:14pt;
+        font-family:Arial;
+        font-weight:bold;
+        font-size-adjust:z;
+}
+
+th {
+        color:#000000;
+        font-size:12pt;
+        font-family:Arial;
+        font-weight:bold;
+        font-size-adjust:z;
+
+}
+
+td {
+        color:#000000;
+        font-size:12pt;
+        font-family:Arial;
+        font-weight:normal;
+        font-size-adjust:z;
+
+}
+
+
+body {
+	background-color: #FFFFFF;
+	color::#000000;
+
+}
+

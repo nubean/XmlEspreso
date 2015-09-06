@@ -1,0 +1,3589 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE  xs:schema  PUBLIC '-//W3C//DTD XMLSCHEMA 200102//EN' 'http://www.w3.org/2001/XMLSchema.dtd'   >
+<xs:schema
+   xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+
+	<xs:element
+     name="copy" >
+	
+
+	<xs:complexType>
+        <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="mapper"></xs:element>
+           <xs:element
+           minOccurs="0" 
+           ref="filterset"></xs:element>
+         
+        </xs:sequence>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="tofile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="todir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="preservelastmodified" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="overwrite" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="filtering" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="flatten" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="includeEmptyDirs" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="failonerror" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="verbose" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+       
+	</xs:complexType>
+	</xs:element>
+
+
+        <xs:element
+     name="filterset" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="begintoken" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="endtoken" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="war" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="lib"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="classes"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="zipfileset"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+          
+           <xs:element
+           minOccurs="0" 
+           ref="webinf"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="metainf"></xs:element>
+        </xs:sequence>
+	<xs:attribute
+         name="destfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+       <xs:attribute
+         name="warfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="webxml" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="basedir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="compress" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="encoding" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="filesonly" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="manifest" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="update" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="ear" >
+	
+	<xs:complexType>
+	  <xs:sequence>
+        <xs:element
+           minOccurs="0" 
+           ref="metainf" />
+        <xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="zipfileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+        </xs:sequence>
+	
+	<xs:attribute
+             name="destfile" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+        <xs:attribute
+             name="earfile" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	<xs:attribute
+             name="appxml" 
+             type="xs:string" 
+             use="required" ></xs:attribute>
+	<xs:attribute
+             name="basedir" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	<xs:attribute
+             name="compress" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	<xs:attribute
+             name="encoding" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	<xs:attribute
+             name="filesonly" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	<xs:attribute
+             name="includes" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	<xs:attribute
+             name="includesfile" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	<xs:attribute
+             name="excludes" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	<xs:attribute
+             name="excludesfile" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	<xs:attribute
+             name="defaultexcludes" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	<xs:attribute
+             name="manifest" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	<xs:attribute
+             name="update" 
+             type="xs:string" 
+             use="optional" ></xs:attribute>
+	</xs:complexType>
+	
+	</xs:element>
+
+                
+	<xs:element
+     name="jar" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="metainf"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="manifest"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="zipfileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+        
+        </xs:sequence>
+	<xs:attribute
+         name="destfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+         <xs:attribute
+         name="jarfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="basedir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="compress" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="encoding" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="filesonly" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="manifest" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="update" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="skip" 
+         name="whenempty" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="add" 
+         name="duplicate" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="index" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="target" >
+	<xs:complexType>
+	<xs:choice
+         maxOccurs="unbounded" 
+         minOccurs="0" >
+	<xs:element
+           ref="tstamp" ></xs:element>
+	<xs:element
+           ref="basename" ></xs:element>
+	<xs:element
+           ref="dirname" ></xs:element>
+	<xs:element
+           ref="manifest" ></xs:element>
+	<xs:element
+           ref="tempfile" ></xs:element>
+	<xs:element
+           ref="javac" ></xs:element>
+	<xs:element
+           ref="ear" ></xs:element>
+	<xs:element
+           ref="mkdir" ></xs:element>
+	<xs:element
+           ref="jar" ></xs:element>
+        <xs:element
+           ref="war" ></xs:element>
+	<xs:element
+           ref="copy" ></xs:element>
+	<xs:element
+           ref="ant" ></xs:element>
+	<xs:element
+           ref="available" ></xs:element>
+	<xs:element
+           ref="chmod" ></xs:element>
+	<xs:element
+           ref="cvs" ></xs:element>
+	<xs:element
+           ref="delete" ></xs:element>
+	<xs:element
+           ref="echo" ></xs:element>
+	<xs:element
+           ref="exec" ></xs:element>
+	<xs:element
+           ref="filter" ></xs:element>
+	<xs:element
+           ref="get" ></xs:element>
+	<xs:element
+           ref="gzip" ></xs:element>
+	<xs:element
+           ref="fixcrlf" ></xs:element>
+	<xs:element
+           ref="java" ></xs:element>
+	<xs:element
+           ref="javadoc" ></xs:element>
+	<xs:element
+           ref="property" ></xs:element>
+	<xs:element
+           ref="replace" ></xs:element>
+	<xs:element
+           ref="rmic" ></xs:element>
+	<xs:element
+           ref="tar" ></xs:element>
+	<xs:element
+           ref="taskdef" ></xs:element>
+	<xs:element
+           ref="zip" ></xs:element>
+        <xs:element
+           ref="xslt" ></xs:element>
+       
+        <xs:any
+           maxOccurs="1" 
+           minOccurs="0" ></xs:any>
+        
+        </xs:choice>
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="depends" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="if" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	</xs:complexType>
+	</xs:element>
+
+
+        <xs:element
+     name="tempfile" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="destdir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="prefix" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+        <xs:attribute
+         name="property" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="suffix" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+        <xs:element
+     name="manifest" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="attribute"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="section"></xs:element>
+          
+        </xs:sequence>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="mode" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+      <xs:element
+     name="attribute" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+
+        <xs:element
+     name="section" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+        <xs:element
+     name="dirname" >
+	
+	<xs:complexType>
+	
+	
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="property" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+	
+	</xs:complexType>
+	</xs:element>
+
+
+          <xs:element
+     name="basename" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="property" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="suffix" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+       <xs:element
+     name="lib" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="casesensitive" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="followsymlinks" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+
+       <xs:element
+     name="classes" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="casesensitive" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="followsymlinks" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+       
+        <xs:element
+     name="webinf" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="casesensitive" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="followsymlinks" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+
+        <xs:element
+     name="metainf" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="casesensitive" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="followsymlinks" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+
+       
+
+	<xs:element name="fileset" >
+	
+	<xs:complexType>
+	 <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="includesfile"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="excludesfile"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+
+        </xs:sequence>
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="casesensitive" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="followsymlinks" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+
+        <xs:element
+     name="tarfileset" >
+	
+	<xs:complexType>
+	 <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="includesfile"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="excludesfile"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+
+        </xs:sequence>
+
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+         <xs:attribute
+         name="mode" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="username" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="group" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="prefix" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="fullpath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="preserveLeadingSlashes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+
+       <xs:element
+     name="classpath" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="pathelement"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="dirset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="filelist"></xs:element>
+        </xs:sequence>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+       <xs:element
+     name="filepath" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="pathelement"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="dirset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="filelist"></xs:element>
+        </xs:sequence>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+          <xs:element
+     name="extdirs" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="pathelement"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="dirset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="filelist"></xs:element>
+        </xs:sequence>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+        <xs:element
+     name="sourcepath" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="pathelement"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="dirset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="filelist"></xs:element>
+        </xs:sequence>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+
+      <xs:element
+     name="srcdir" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="pathelement"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="dirset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="filelist"></xs:element>
+        </xs:sequence>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+       <xs:element
+     name="bootclasspath" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="pathelement"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="dirset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="filelist"></xs:element>
+        </xs:sequence>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+        <xs:element
+     name="dirset" >
+	
+	<xs:complexType>
+         <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="includesfile"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="excludesfile"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+
+        </xs:sequence>
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+         <xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="casesensitive" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="followsymlinks" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+       <xs:element
+     name="packageset" >
+	
+	<xs:complexType>
+         <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="includesfile"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="excludesfile"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+
+        </xs:sequence>
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+         <xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="casesensitive" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="followsymlinks" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+
+        <xs:element
+     name="package" >
+	
+	<xs:complexType>
+        
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+        <xs:element
+     name="excludepackage" >
+	
+	<xs:complexType>
+        
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+     <xs:element
+     name="source" >
+	
+	<xs:complexType>
+         <xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+       </xs:complexType>
+	</xs:element>
+
+
+       <xs:element name="doctitle">
+         <xs:complexType>
+           <xs:simpleContent>
+              <xs:extension base="xs:string">
+        
+               </xs:extension>
+               </xs:simpleContent>
+               </xs:complexType>
+               </xs:element>
+
+
+            <xs:element name="header">
+         <xs:complexType>
+           <xs:simpleContent>
+              <xs:extension base="xs:string">
+        
+               </xs:extension>
+               </xs:simpleContent>
+               </xs:complexType>
+               </xs:element>
+
+             <xs:element name="footer">
+         <xs:complexType>
+           <xs:simpleContent>
+              <xs:extension base="xs:string">
+        
+               </xs:extension>
+               </xs:simpleContent>
+               </xs:complexType>
+               </xs:element>
+
+           <xs:element name="bottom">
+         <xs:complexType>
+           <xs:simpleContent>
+              <xs:extension base="xs:string">
+        
+               </xs:extension>
+               </xs:simpleContent>
+               </xs:complexType>
+               </xs:element>
+
+            <xs:element
+     name="link" >
+	
+	<xs:complexType>
+        
+	
+	<xs:attribute
+         name="href" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="offline" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="packagelistLoc" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+        
+
+	</xs:complexType>
+	</xs:element>
+
+
+       <xs:element
+     name="group" >
+	
+	<xs:complexType>
+        
+	
+	<xs:attribute
+         name="title" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+	<xs:attribute
+         name="packages" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+        
+
+	</xs:complexType>
+	</xs:element>
+
+        <xs:element
+     name="doclet" >
+	
+	<xs:complexType>
+        
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="param"></xs:element>
+         
+        </xs:sequence>
+	
+        <xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+	<xs:attribute
+         name="path" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+        <xs:element
+     name="tag" >
+	
+	<xs:complexType>
+        
+	
+	
+        <xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+	<xs:attribute
+         name="description" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+
+        
+        <xs:attribute
+         name="enabled" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+	<xs:attribute
+         name="scope" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+        <xs:element
+     name="taglet" >
+	
+	<xs:complexType>
+	
+        <xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+	<xs:attribute
+         name="path" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	</xs:complexType>
+	</xs:element>
+
+
+       <xs:element
+     name="patternset" >
+	
+	<xs:complexType>
+         <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="includesfile"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="excludesfile"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+
+        </xs:sequence>
+	
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+         <xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+
+       <xs:element
+     name="include" >
+	
+	<xs:complexType>
+         
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="if" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="unless" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+
+         <xs:element
+     name="includesfile" >
+	
+	<xs:complexType>
+       
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="if" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="unless" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+        <xs:element
+     name="excludesfile" >
+	
+	<xs:complexType>
+        
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="if" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="unless" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+
+
+        <xs:element
+     name="exclude" >
+	
+	<xs:complexType>
+        
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="if" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="unless" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+          <xs:element
+     name="pathelement" >
+	
+	<xs:complexType>
+	<xs:attribute
+         name="path" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="location" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+        
+          <xs:element
+     name="filelist" >
+	
+	<xs:complexType>
+        <xs:attribute
+         name="id" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>  
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="files" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="tstamp" >
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="format"></xs:element>
+        </xs:sequence>
+	<xs:attribute
+         name="prefix" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+
+
+      <xs:element
+     name="format" >
+	<xs:complexType>
+	
+	<xs:attribute
+         name="property" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+         <xs:attribute
+         name="pattern" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+         <xs:attribute
+         name="timezone" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+         <xs:attribute
+         name="offset" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+          <xs:attribute
+         name="unit" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+          <xs:attribute
+         name="locale" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="project" >
+	<xs:complexType>
+        <xs:sequence>
+	<xs:element
+	     maxOccurs="unbounded" 
+           minOccurs="0" 
+           ref="property" ></xs:element>
+        <xs:element
+           maxOccurs="unbounded" 
+           minOccurs="1" 
+           ref="target" ></xs:element>
+         </xs:sequence>
+
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="default" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="basedir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+        
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="property" >
+	
+	<xs:complexType>
+        <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="classpath"></xs:element>
+        </xs:sequence>
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="resource" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="refid" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="environment" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="location" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="prefix" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="ant" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="property"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="reference"></xs:element>
+          
+        </xs:sequence>
+	<xs:attribute
+         name="antfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="target" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="output" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="inheritAll" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="inheritRefs" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+
+
+         <xs:element
+     name="reference" >
+	<xs:complexType>
+	
+	<xs:attribute
+         name="refid" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+         <xs:attribute
+         name="torefid" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+        
+
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="available" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="classpath"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="filepath"></xs:element>
+          
+        </xs:sequence>
+	<xs:attribute
+         name="property" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="classname" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="resource" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="value" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="filepath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="type" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="ignoresystemclasses" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+
+	</xs:element>
+	<xs:element
+     name="chmod" >
+	
+	<xs:complexType>
+        <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="fileset" ></xs:element>
+         </xs:sequence>
+	
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="perm" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="parallel" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="file" 
+         name="type" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+
+       <xs:element
+     name="mapper" >
+	
+	<xs:complexType>
+        
+	
+	<xs:attribute
+         name="type" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classname" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="from" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="to" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="gzip" >
+	
+	<xs:complexType>
+
+	<xs:attribute
+         name="src" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="zipfile" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+
+
+
+
+	<xs:element
+     name="filter" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="token" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="filtersfile" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="taskdef" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="classpath"></xs:element>
+        </xs:sequence>
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classname" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="resource" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="loaderRef" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	</xs:complexType>
+	</xs:element>
+
+
+
+
+	<xs:element
+     name="xslt" >
+	
+	<xs:complexType>
+          <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="classpath"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="xmlcatalog"></xs:element>
+         
+	<xs:element
+           minOccurs="0" 
+           ref="param"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="outputproperty"></xs:element>
+          
+        </xs:sequence>
+       
+	<xs:attribute
+         name="basedir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="destdir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="out" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="html" 
+         name="extension" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="force" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="in" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="scanincludeddirectories" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+
+       <xs:element
+            name="outputproperty" >
+       <xs:complexType>
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+	
+	</xs:complexType>
+	</xs:element>
+
+    
+
+      <xs:element
+     name="xmlcatalog" >
+	
+	<xs:complexType>
+         <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="dtd"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="entity"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="classpath"></xs:element>
+           </xs:sequence>
+
+        
+	<xs:attribute
+         name="id" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="refid" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+      <xs:element
+     name="param" >
+	
+	<xs:complexType>
+         
+
+      
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="expression" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+          <xs:element
+     name="outproperty" >
+	
+	<xs:complexType>
+	<xs:attribute
+         name="name" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+       <xs:element
+     name="dtd" >
+	
+	<xs:complexType>
+        
+	<xs:attribute
+         name="publicid" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="location" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+       <xs:element
+     name="entity" >
+	
+	<xs:complexType>
+        
+	<xs:attribute
+         name="publicid" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="required" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="replace" >
+	
+	<xs:complexType>
+         <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="replacefilter"></xs:element>
+        </xs:sequence>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="token" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="encoding" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="summary" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="propertyFile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="replacefilterfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+
+        <xs:element
+     name="replacefilter" >
+	
+	<xs:complexType>
+         
+	<xs:attribute
+         name="token" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="property" 
+         type="xs:string"></xs:attribute>
+       
+	
+	</xs:complexType>
+	</xs:element>
+
+
+	<xs:element
+     name="rmic" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="classpath"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="extdirs"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="compilerarg"></xs:element>
+         
+        </xs:sequence>
+	<xs:attribute
+         name="base" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="classname" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="filtering" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="sourcebase" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="stubversion" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="verify" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="iiop" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="iiopopts" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="idl" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="idlopts" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="debug" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includeAntRuntime" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includeJavaRuntime" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="extdirs" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="compiler" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+
+        <xs:element
+     name="compilerarg" >
+	
+	<xs:complexType>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="line" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="path" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+         <xs:attribute
+         name="compiler" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+          <xs:element
+     name="arg" >
+	
+	<xs:complexType>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="line" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="path" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+         <xs:attribute
+         name="compiler" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+	<xs:element
+     name="zip" >
+	
+	<xs:complexType>
+	<xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="zipfileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="zipgroupfileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+          
+        
+        </xs:sequence>
+	<xs:attribute
+         name="zipfile" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="basedir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="destfile" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="duplicate" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="compress" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="encoding" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="filesonly" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="update" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="whenempty" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+
+         <xs:element
+     name="zipfileset" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="casesensitive" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="followsymlinks" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="prefix" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="fullpath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="src" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	</xs:complexType>
+	</xs:element>
+
+
+         <xs:element
+     name="zipgroupfileset" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="casesensitive" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="followsymlinks" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+
+
+	<xs:element
+     name="javac" >
+	
+	<xs:complexType>
+        <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="srcdir"></xs:element>
+       <xs:element
+           minOccurs="0" 
+           ref="classpath"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="sourcepath"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="bootclasspath"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="extdirs"></xs:element>
+        </xs:sequence>
+	<xs:attribute
+         name="srcdir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="destdir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="failonerror" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="bootclasspath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="extdirs" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="debug" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="optimize" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="deprecation" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="compiler" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="sourcepath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="sourcepathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="bootclasspathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="listfiles" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="encoding" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="nowarn" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="source" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="debuglevel" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="target" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="verbose" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="depend" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includeAntRuntime" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includeJavaRuntime" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="fork" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="executable" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="memoryInitialSize" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="memoryMaximumSize" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+
+
+	<xs:element
+     name="javadoc" >
+	
+	<xs:complexType>
+        <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="packageset"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="package"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="excludepackage"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="source"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="doctitle"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="header"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="footer"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="bottom"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="link"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="group"></xs:element>
+       <xs:element
+           minOccurs="0" 
+           ref="doclet"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="tag"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="taglet"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="sourcepath"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="classpath"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="bootclasspath"></xs:element>
+        </xs:sequence>
+	<xs:attribute
+         name="sourcepath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="destdir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="sourcefiles" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="packagenames" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="bootclasspath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="extdirs" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="overview" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="public" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="protected" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="package" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="private" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="old" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="verbose" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="locale" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="encoding" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="version" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="use" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="author" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="splitindex" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="windowtitle" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="doctitle" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="header" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="footer" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="bottom" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="link" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="linkoffline" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="group" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="nodedeprecated" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="nodedeprecatedlist" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="notree" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="noindex" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="nohelp" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="nonavbar" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="serialwarn" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="helpfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="stylesheetfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="charset" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="docencoding" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="sourcepathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="maxmemory" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="packageList" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="bootclasspathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="access" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="doclet" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="docletpath" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="docletpathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="additionalparam" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="failonerror" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludepackagenames" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="useexternalfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="source" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+
+	<xs:element
+     name="fixcrlf" >
+	<xs:complexType>
+	
+	<xs:attribute
+         name="srcdir" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="destDir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="cr" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="tab" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="eof" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+
+
+
+	<xs:element
+     name="get" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="src" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="dest" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="verbose" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="ignoreerrors" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="usetimestamp" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="username" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="password" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+
+	</xs:complexType>
+	</xs:element>
+
+
+
+	<xs:element
+     name="cvs" >
+	<xs:complexType>
+	
+	<xs:attribute
+         name="cvsRoot" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="dest" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="package" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="tag" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="checkout" 
+         name="command" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="compression" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="compressionlevel" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="cvsRsh" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="date" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="quiet" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="noexec" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="output" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="error" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="append" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="port" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="passfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="failonerror" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="tar" >
+	
+	<xs:complexType>
+        <xs:sequence>
+        <xs:element
+           minOccurs="0" 
+           ref="tarfileset"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="patternset"></xs:element>
+          <xs:element
+           minOccurs="0" 
+           ref="include"></xs:element>
+         <xs:element
+           minOccurs="0" 
+           ref="exclude"></xs:element>
+       </xs:sequence>
+	<xs:attribute
+         name="destfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+         <xs:attribute
+         name="tarfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="longfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="compression" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="basedir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="includesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="excludesfile" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	</xs:complexType>
+	</xs:element>
+
+
+
+
+
+	<xs:element
+     name="exec" >
+	
+	<xs:complexType>
+        <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="arg"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="env"></xs:element>
+        </xs:sequence>
+	<xs:attribute
+         name="command" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="os" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="output" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="executable" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="vmlauncher" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="append" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="outputproperty" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="resultproperty" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="timeout" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="failonerror" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="failifexecutionfails" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="newenvironment" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+
+	
+	</xs:complexType>
+	</xs:element>
+
+        
+          <xs:element
+     name="env" >
+	
+	<xs:complexType>
+	<xs:attribute
+         name="key" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="path" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+       
+	
+
+	</xs:complexType>
+	</xs:element>
+
+
+	<xs:element
+     name="java" >
+	
+	<xs:complexType>
+       <xs:sequence>
+         <xs:element
+           minOccurs="0" 
+           ref="arg"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="jvmarg"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="sysproperty"></xs:element>
+        <xs:element
+           minOccurs="0" 
+           ref="classpath"></xs:element>
+      <xs:element
+           minOccurs="0" 
+           ref="env"></xs:element>
+       </xs:sequence>
+	<xs:attribute
+         name="classname" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="jar" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="fork" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="jvmargs" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="classpathref" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="jvm" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="maxmemory" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="failonerror" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="output" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="append" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="newenvironment" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="timeout" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+	</xs:complexType>
+	</xs:element>
+
+
+        
+          <xs:element
+     name="jvmarg" >
+	
+	<xs:complexType>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="line" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="path" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+         <xs:attribute
+         name="compiler" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	
+
+	</xs:complexType>
+	</xs:element>
+
+         <xs:element
+     name="sysproperty" >
+	
+	<xs:complexType>
+	<xs:attribute
+         name="key" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="value" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="path" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+       
+	
+
+	</xs:complexType>
+	</xs:element>
+
+	<xs:element
+     name="mkdir" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	
+	
+	</xs:complexType>
+	</xs:element>
+
+
+
+
+	<xs:element
+     name="delete" >
+	
+	<xs:complexType>
+          <xs:sequence>
+	<xs:element
+           minOccurs="0" 
+           ref="fileset"></xs:element>
+        
+         </xs:sequence>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="dir" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="verbose" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="quiet" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="true" 
+         name="failonerror" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         default="false" 
+         name="includeEmptyDirs" 
+         type="xs:boolean" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="defaultexcludes" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	</xs:complexType>
+	</xs:element>
+
+
+	<xs:element
+     name="echo" >
+	
+	<xs:complexType>
+	
+	<xs:attribute
+         name="message" 
+         type="xs:string" 
+         use="required" ></xs:attribute>
+	<xs:attribute
+         name="file" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="append" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	<xs:attribute
+         name="level" 
+         type="xs:string" 
+         use="optional" ></xs:attribute>
+	</xs:complexType>
+	</xs:element>
+	</xs:schema>

@@ -1,0 +1,421 @@
+options {
+  MULTI=true;
+  IGNORE_CASE = true;
+  STATIC = false;
+  LOOKAHEAD = 1;
+  DEBUG_PARSER = false; 
+  DEBUG_TOKEN_MANAGER = false;
+  ERROR_REPORTING = true;
+  USER_TOKEN_MANAGER = false;
+  USER_CHAR_STREAM = false;
+  JAVA_UNICODE_ESCAPE = false;
+  UNICODE_INPUT = true;
+}
+
+PARSER_BEGIN(CSSParser)
+package com.nubean.css.parser;
+
+import javax.swing.text.Document;
+import org.xml.sax.SAXParseException;
+
+import com.nubean.michbase.DefaultErrorHandler;
+
+public class CSSParser
+{
+	private Document document;
+	private DefaultErrorHandler errorHandler;
+	private ParseException lastException;
+	private TokenMgrError tokenError;
+	
+	public void setErrorHandler(DefaultErrorHandler errorHandler) {
+		this.errorHandler = errorHandler;
+	}
+	
+	private void recoverFromError(ParseException e) {
+	 lastException = e;
+	 try {
+		if(errorHandler != null) {
+			
+			SAXParseException spe = null;
+				if(e.currentToken.next != null) {
+					spe = new SAXParseException(e.getMessage(), null, null,
+		  				e.currentToken.next.beginLine, e.currentToken.next.beginColumn);
+				} else {
+					spe = new SAXParseException(e.getMessage(), null, null,
+		  				e.currentToken.beginLine, e.currentToken.beginColumn);
+				}
+        		errorHandler.error(spe);
+        	
+        }
+		
+	  } catch(Exception sae) {
+                	
+      }
+     
+     }
+     
+     private void recoverFromError(TokenMgrError e) {
+      tokenError = e;
+	  try {
+		if(errorHandler != null) {
+			SAXParseException spe = 
+			 new SAXParseException(e.getMessage(), null, null,0,0);
+        	errorHandler.error(spe);
+        }
+	  } catch(Exception sae) {
+                	
+      }
+     }
+     
+	private void jjtreeOpenNodeScope(SimpleNode sn) {
+      sn.setFirstToken(getToken(1));
+    }
+
+    private  void jjtreeCloseNodeScope(SimpleNode sn){
+      sn.setLastToken(getToken(0));
+    }
+    
+    public Document getDocument() {
+    	return  document;
+    }
+    
+    public void setDocument(Document document) {
+    	this.document = document;
+    }
+    
+    public ParseException getParseException() {
+    	return lastException;
+    }
+    
+    public TokenMgrError getTokenMgrError() {
+    	return tokenError;
+    }
+    
+     private void switchTo(int state) {
+    	token_source.SwitchTo(state);
+    	if(token.next != null) {
+    		if(token.next.image != null)
+    			jj_input_stream.backup(token.next.image.length());
+    		token.next = null;
+    	}
+    }
+    
+    public void setTabSize(int size) {
+     jj_input_stream.setTabSize(size);
+    }
+    
+}
+
+PARSER_END(CSSParser)
+
+TOKEN_MGR_DECLS:
+{
+}
+
+<DEFAULT> TOKEN:
+{
+ 	  <SPACE: ( <uS> )+ >
+|	  <STRING: (<string1>|<string2>) >
+|	  <INVALID: (<invalid1>|<invalid2>) >
+|     <IDENT: ("-")? <nmstart> (<nmchar>)* >
+|     <HASH: "#"<name> >
+|     <NUMBER: (["0"-"9"])+ | (["0"-"9"])*"." (["0"-"9"])+ >
+|     <IMPORTANT_SYM: "!"((<SPACE>)? | <comment>)* "important" >
+|  	  <#uS: (["\t","\n","\r"," ","\u3000"]) | <comment> >
+|     <#h: ["0"-"9", "a"-"f"]>
+|     <#nonascii: ["\u0100" - "\uFFFF"] >
+|     <#esc: "\\" >
+|     <#h16: (<h> | <h><h> | <h><h><h> | <h><h><h><h> | <h><h><h><h><h> | <h><h><h><h><h><h>) >
+|     <#crlf: "\r\n" >
+|	  <#unicode: <esc><h16>(<crlf> | <uS>)? >
+|     <#escape: <unicode> | (<esc> ( ~["\r", "\n", "\f", "0"-"9", "a"-"f"])) >
+|     <#nmstart: ( (["_", "a"-"z"]) | (<nonascii>) | (<escape>) ) >
+|     <#nmchar: (<nmstart> | "-" | (["0" - "9"]) ) >
+|	  <#nl: ( ("\n") | ("\r") | ("\r\n") | ("\f") ) >
+|     <#string1: ("\"")  ( ( ~["\n", "\r", "\f", "\""]) | ( ("\\"<nl>) |<escape>) )* ("\"") >
+|     <#string2: ("'")  ( ( ~["\n", "\r", "\f", "'"]) | ( ("\\"<nl>) |<escape>) )* ("'") >
+|     <#invalid1: ("\"")  ( ( ~["\n", "\r", "\f", "\""]) | ( ("\\"<nl>) |<escape>) )*  >
+|     <#invalid2: ("'")  ( ( ~["\n", "\r", "\f", "'"]) | ( ("\\"<nl>) |<escape>) )*  >
+|     <#comment: "/*" (~["*"])* (["*"])+ ( (~["/", "*"]) (~["*"])* (["*"])+)* "/" > 
+|     <#name: (<nmchar>)+ >
+|     <#url: ( (["!", "#", "$", "%", "&", "*", "-", "~"]) | <nonascii> | <escape>)* >
+|     <#esc0: <esc> ("0" | "00" | "000" | "0000")? >
+|	  <#A:		"a"| (<esc0>("41" | "61"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? >
+|	  <#C:		"c"| (<esc0>("43" | "63"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? >
+|	  <#D:		"d"| (<esc0>("44" | "64"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? >
+|	  <#E:		"e"| (<esc0>("45" | "65"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? >
+|	  <#G:		"g"| (<esc0>("47" | "67"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\g")>
+|	  <#H:		"h"| (<esc0>("48" | "68"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\h")>
+|	  <#I:		"i"| (<esc0>("49" | "69"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\i")>
+|	  <#K:		"k"| (<esc0>("4b" | "6b"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\k")>
+|	  <#M:		"m"| (<esc0>("4d" | "6d"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\m")>
+|	  <#N:		"n"| (<esc0>("4e" | "6e"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\n")>
+|	  <#P:		"p"| (<esc0>("50" | "70"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\p")>
+|	  <#R:		"r"| (<esc0>("52" | "72"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\r")>
+|	  <#S:		"s"| (<esc0>("53" | "73"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\s")>
+|	  <#T:		"t"| (<esc0>("54" | "74"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\t")>
+|	  <#X:		"x"| (<esc0>("58" | "78"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\x")>
+|	  <#Z:		"z"| (<esc0>("5a" | "7a"))("\r\n" |([" ", "\t", "\r", "\n", "\f"]))? | ("\\z")>
+}
+
+<DEFAULT> TOKEN :
+{
+	  <SEMI_COLON:  ";" >
+|     <RBRACE: "}" >
+|	  <COLON: ":" >
+|	  <PERIOD: "." >
+|     <ASTERISK: "*" >
+|     <LSQBRKT: "[" >
+|     <RSQBRKT: "]" >
+|	  <EQ: "=" >
+|     <LPAREN: "(">
+|     <RPAREN: ")">
+|     <PAGE_SYM: "@page">
+|     <IMPORT_SYM: "@import">
+|     <MEDIA_SYM: "@media" >
+|     <CHARSET_SYM: "@charset">
+|     <CDO: "<!--" >
+|     <CDC: "-->" >
+|     <INCLUDES: "~=">
+|     <DASHMATCH: "|=">
+|     <URI: ("url(" (<SPACE>)? <STRING> (<SPACE>)? ")") | ("url(" (<SPACE>)? <url> (<SPACE>)? ")") >
+|     <FUNCTION: <IDENT> "(" >
+}
+
+<DEFAULT> TOKEN:
+{
+	<LBRACE: (<SPACE>)? "{">
+|   <COMA:	(<SPACE>)? "," >
+|   <PLUS: (<SPACE>)? "+">
+|	<GREATER: (<SPACE>)? ">">
+}
+
+<DEFAULT> TOKEN:
+{
+	<EMS: <NUMBER><E><M> >
+|	<EXS: <NUMBER><E><X> >
+|	<LENGTH: <NUMBER>( (<P><X>) | (<C><M>) | (<M><M>) | (<I><N>) | (<P><T>) | (<P><C>) ) >
+|   <ANGLE:  <NUMBER>( (<D><E><G>) | (<R><A><D>) | (<G><R><A><D>) ) >
+|   <TIME: <NUMBER>( (<M><SPACE>) | (<SPACE>) ) >
+|   <FREQ: <NUMBER>( (<H><Z>) | (<K><H><Z>) ) >
+|   <DIMENSION: <NUMBER><IDENT> >
+|   <PERCENTAGE: <NUMBER>"%" >
+}
+
+
+ASTcss stylesheet() #css:
+{}
+{
+	{
+		lastException = null; 
+		tokenError = null;
+	}
+	try {
+  		( <CHARSET_SYM> <STRING> <SEMI_COLON> )?
+    	( <SPACE> | <CDO> | <CDC>)* 
+    	( imports() ( <SPACE> | <CDO> | <CDC> )* )*
+    	( ( ruleset() | media() | page() ) 
+    	( <SPACE> | <CDO> | <CDC> )* )* <EOF>
+    } catch(ParseException e) {
+		recoverFromError(e);
+	} catch(TokenMgrError te) {
+		recoverFromError(te);
+	}
+	{return jjtThis;}
+}
+
+void imports() :
+{}
+{
+    <IMPORT_SYM> (<SPACE>)*
+    ( <STRING> | <URI> ) 
+    (<SPACE>)* 
+    ( 
+    	medium() 
+    	( <COMA> (<SPACE>)* medium())* 
+    )? 
+    <SEMI_COLON> 
+    ( LOOKAHEAD(2) <SPACE>)*
+  
+}
+
+void media() :
+{}
+{
+  <MEDIA_SYM> 
+  (<SPACE>)* 
+  medium() 
+  ( <COMA> (<SPACE>)* medium() )* 
+  <LBRACE> 
+  (<SPACE>)* 
+  (ruleset())* 
+  <RBRACE> 
+  ( LOOKAHEAD(2) <SPACE>)*
+ 
+}
+
+void medium() #void:
+{}
+{
+	<IDENT> (<SPACE>)*
+}
+
+void page() :
+{}
+{
+   <PAGE_SYM> 
+   (LOOKAHEAD(2) <SPACE>)* 
+   (pseudo_page())? 
+   (<SPACE>)*
+    <LBRACE> 
+    (<SPACE>)* 
+    (declaration())?
+    ( <SEMI_COLON> 
+    	(<SPACE>)* 
+    	(declaration())?
+    )* 
+    <RBRACE> 
+    (LOOKAHEAD(2) <SPACE>)*
+}
+
+void pseudo_page()  #void:
+{}
+{
+  <COLON> <IDENT>
+}
+
+void operator() #void:
+{}
+{
+   "/" (<SPACE>)* | <COMA> (<SPACE>)* 
+}
+
+void combinator() #void:
+{}
+{
+  <PLUS> (<SPACE>)*
+  | <GREATER> (<SPACE>)*
+  | <SPACE>
+}
+
+void unary_operator() #void :
+{}
+{
+  "-" | <PLUS>
+}
+
+void property() #void:
+{}
+{
+  <IDENT> (<SPACE>)*
+}
+
+void ruleset() :
+{}
+{
+  selector() 
+  ( <COMA> (<SPACE>)* selector())*
+  <LBRACE> 
+  (<SPACE>)* 
+  (declaration())?
+  ( <SEMI_COLON> 
+    (<SPACE>)* 
+    (declaration())?
+   )* 
+   <RBRACE> 
+   (LOOKAHEAD(2) <SPACE>)*
+}
+
+void selector():
+{}
+{
+  simple_selector() ( combinator() simple_selector() )*
+}
+
+void simple_selector() #void:
+{}
+{
+ (element_name() ( <HASH> | class_name() | attrib() | pseudo() )*)
+  | ( <HASH> | class_name() | attrib() | pseudo() )+
+}
+
+void class_name() #void:
+{}
+{
+  <PERIOD> <IDENT>
+}
+
+void element_name()#void:
+{}
+{
+  <IDENT> | <ASTERISK>
+}
+
+void attrib() #void:
+{}
+{
+  <LSQBRKT> (<SPACE>)* <IDENT> (<SPACE>)* ( ( <EQ> | <INCLUDES> | <DASHMATCH> ) (<SPACE>)*
+    ( <IDENT> | <STRING> ) (<SPACE>)* )? <RSQBRKT>
+}
+
+void pseudo() #void:
+{}
+{
+  <COLON> 
+  ( 
+  	(<IDENT>) 
+  	| 
+  	(
+  		<FUNCTION> 
+  		(LOOKAHEAD(2) <SPACE>)* 
+  		(<IDENT>)? 
+  		(<SPACE>)* 
+  		<RPAREN> 
+  	)
+  )
+
+}
+
+void declaration() :
+{}
+{
+  property() <COLON> (<SPACE>)* expr() (prio())?
+}
+
+void prio() #void:
+{}
+{
+  <IMPORTANT_SYM> (<SPACE>)*
+}
+
+void expr() #void:
+{}
+{
+  term() ( (operator())? term() )*
+}
+
+void term() #void:
+{}
+{
+  (unary_operator())?
+    ( <NUMBER> (<SPACE>)* | <PERCENTAGE> (<SPACE>)* | <LENGTH> (<SPACE>)* | <EMS> (<SPACE>)* | <EXS> (<SPACE>)* | <ANGLE> (<SPACE>)* |
+      <TIME> (<SPACE>)* | <FREQ> (<SPACE>)* )
+  | <STRING> (<SPACE>)* | <IDENT> (<SPACE>)* | <URI> (<SPACE>)* | hexcolor() | function()
+}
+
+void function() #void:
+{}
+{
+  <FUNCTION> (<SPACE>)* expr() <RPAREN> (<SPACE>)*
+}
+
+/*
+ * There is a constraint on the color that it must
+ * have either 3 or 6 hex-digits (i.e., [0-9a-fA-F])
+ * after the "#"; e.g., "#000" is OK, but "#abcd" is not.
+ */
+void hexcolor() #void:
+{}
+{
+  <HASH> (<SPACE>)*
+}

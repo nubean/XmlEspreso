@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='ISO-8859-1'?> 
+<!DOCTYPE jhelpdev 
+  PUBLIC "-//Markus Kraetzig//JHelpDev Configuration Settings 1.0" 
+  "http://www.mk-home.de/jhelpdev/jhelpdev_1_0.dtd"> 
+
+<jhelpdev version="1.0"> 
+
+ <config>
+   <project>XML Editor Help</project>
+   <projectdir>javahelp</projectdir>
+   <startpage>Introduction.html</startpage>
+   <popupicon>images/popup.gif</popupicon>
+ </config>
+
+ <view>
+   <helptitle>Xml Editor Help</helptitle>
+   <toc showing="yes" label="TOC"/>
+   <index showing="yes" label="Index"/>
+   <search showing="yes" label="Search"/>
+ </view>
+
+</jhelpdev>

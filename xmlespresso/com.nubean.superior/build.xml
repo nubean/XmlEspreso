@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="dist" name="Michigan">
+
+	<!-- set global properties for this build -->
+	<property name="src" value="src" />
+	<property name="build" value="build" />
+	<property name="dist" value="XMLEspresso8" />
+	<property name="lib" value="lib" />
+	<property name="cp" value="${build}:${lib}/dtdparser.jar:${lib}/jhbasic.jar:${lib}/jh.jar:${lib}/jhall.jar:${lib}/jsearch.jar:${lib}/iText-5.0.2.jar" />
+	<property name="runcp" value="${dist}:${dist}/michide.jar:${dist}/dtdparser.jar:${dist}/jhbasic.jar:${dist}/jh.jar:${dist}/jhall.jar:${dist}/jsearch.jar:${dist}/iText-5.0.2.jar" />
+	<property name="parser.xml.dir" location="${src}/com/nubean/michxml/parser" />
+	<property name="parser.dtd.dir" location="${src}/com/nubean/michdtd/parser" />
+	<property name="parser.javacc.dir" location="${src}/com/nubean/javacc/parser" />
+	<property name="parser.java.dir" location="${src}/com/nubean/java/parser" />
+	<property name="parser.css.dir" location="${src}/com/nubean/css/parser" />
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp />
+	</target>
+
+
+	<target depends="init" name="build">
+		<javac includeantruntime="false" classpath="${cp}" destdir="${build}" includes="**/*.java" srcdir="${src}" />
+	</target>
+
+
+	<target depends="dist" name="run">
+		<java fork="true" maxmemory="512m" classpath="${runcp}" classname="com.nubean.michlic.MichiganLauncher" />
+	</target>
+
+	<target depends="build" name="dist">
+		<mkdir dir="${dist}" />
+		<mkdir dir="${dist}/javahelp" />
+
+		<copy todir="${dist}">
+			<fileset dir="${lib}" />
+		</copy>
+		<copy todir="${dist}/javahelp">
+			<fileset dir="${src}/javahelp" />
+		</copy>
+
+		<copy todir="${dist}">
+			<fileset dir=".">
+				<include name="XMLEspresso.*" />
+			</fileset>
+		</copy>
+		<jar basedir="${build}" includes="*.properties,**/*.class, config/**, dtds/**, images/**, schemas/**, styles/**" jarfile="${dist}/michide.jar" />
+	</target>
+
+	<target description="run javacc on XML parser" name="xmlparser">
+		<javacc javacchome="javacc-5.0" outputdirectory="${parser.xml.dir}" static="false" target="${parser.xml.dir}/XML10.jj" />
+	</target>
+
+	<target depends="init" description="runs javacc on DTD parser" name="dtdparser">
+		<jjtree javacchome="javacc-5.0" multi="true" nodedefaultvoid="false" nodefactory="false" nodepackage="com.nubean.michdtd.parser" nodeprefix="AST" nodescopehook="true" nodeusesparser="true" outputdirectory="${parser.dtd.dir}" static="false" target="${parser.dtd.dir}/DTDParser.jjt" visitor="true" />
+		<javacc javacchome="javacc-5.0" outputdirectory="${parser.dtd.dir}" static="false" target="${parser.dtd.dir}/DTDParser.jj" />
+	</target>
+
+	<target depends="init" description="runs javacc on CSS parser" name="cssparser">
+		<jjtree javacchome="javacc-5.0" multi="true" nodedefaultvoid="false" nodefactory="false" nodepackage="com.nubean.css.parser" nodeprefix="AST" nodescopehook="true" nodeusesparser="true" outputdirectory="${parser.css.dir}" static="false" target="${parser.css.dir}/CSSParser.jjt" visitor="true" />
+		<javacc javacchome="javacc-5.0" outputdirectory="${parser.css.dir}" static="false" target="${parser.css.dir}/CSSParser.jj" />
+	</target>
+	<target depends="init" description="Runs javacc on JavaCC 5.0 parser" name="javaccparser">
+		<jjtree javacchome="javacc-5.0" multi="true" nodedefaultvoid="false" nodefactory="false" nodepackage="com.nubean.javacc.parser" nodeprefix="AST" nodescopehook="true" nodeusesparser="true" outputdirectory="${parser.javacc.dir}" static="false" target="${parser.javacc.dir}/JavaCCParser.jjt" visitor="true" />
+		<javacc javacchome="javacc-5.0" outputdirectory="${parser.javacc.dir}" static="false" target="${parser.javacc.dir}/JavaCCParser.jj" />
+	</target>
+
+	<target depends="init" description="Runs javacc on Java 5.0 parser" name="javaparser">
+		<jjtree javacchome="javacc-5.0" multi="true" nodedefaultvoid="false" nodefactory="false" nodepackage="com.nubean.java.parser" nodeprefix="AST" nodescopehook="true" nodeusesparser="true" outputdirectory="${parser.java.dir}" static="false" target="${parser.java.dir}/Java5Parser.jjt" visitor="true" />
+		<javacc javacchome="javacc-5.0" outputdirectory="${parser.java.dir}" static="false" target="${parser.java.dir}/Java5Parser.jj" />
+	</target>
+
+	<target name="clean">
+		<delete quiet="true" dir="${dist}" />
+		<delete>
+			<fileset dir="${build}" includes="**/*.class" />
+		</delete>
+	</target>
+
+</project>

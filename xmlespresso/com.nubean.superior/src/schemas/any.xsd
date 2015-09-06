@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE xs:schema PUBLIC '-//W3C//DTD XMLSCHEMA 200102//EN'
+  'http://www.w3.org/2001/XMLSchema.dtd'>
+
+<xs:schema  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:element name="any">
+<xs:complexType mixed="true">
+  <xs:annotation>
+	<xs:documentation>
+	This element can have any element as its sub-element and allows 
+	mixing of elements and content in any order.
+	</xs:documentation>
+  </xs:annotation>
+
+  <xs:sequence>
+    <xs:any namespace="##any" minOccurs="0" maxOccurs="unbounded"
+      processContents="skip" />
+  </xs:sequence>
+  <xs:anyAttribute namespace="##any" processContents="skip">
+	<xs:annotation>
+		<xs:documentation>Any attribute is allowed.</xs:documentation>
+	</xs:annotation>
+  </xs:anyAttribute>
+</xs:complexType>
+</xs:element>
+
+</xs:schema>

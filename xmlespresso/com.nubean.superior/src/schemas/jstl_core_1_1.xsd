@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	
+<xs:schema version="1.0" xml:lang="en" elementFormDefault="qualified"
+	targetNamespace="http://java.sun.com/jsp/jstl/core" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://java.sun.com/xml/ns/javaee">
+	<xs:annotation>
+		<xs:documentation>JSTL 1.1 core library adapter for Facelets
+		</xs:documentation>
+		<xs:documentation>tlib-version: 1.1</xs:documentation>
+	</xs:annotation>
+	<xs:element name="catch">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+        Catches any Throwable that occurs in its body and optionally
+        exposes it.
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+			<xs:attribute name="var">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the exported scoped variable for the
+exception thrown from a nested action. The type of the
+scoped variable is the type of the exception thrown.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="choose">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+	Simple conditional tag that establishes a context for
+	mutually exclusive conditional operations, marked by
+	<when> and <otherwise>
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="if">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+	Simple conditional tag, which evalutes its body if the
+	supplied condition is true and optionally exposes a Boolean
+	scripting variable representing the evaluation of this condition
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+			<xs:attribute name="test" use="required">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+The test condition that determines whether or
+not the body content should be processed.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="var">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the exported scoped variable for the
+resulting value of the test condition. The type
+of the scoped variable is Boolean.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="scope">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Scope for var.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="import">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+        Retrieves an absolute or relative URL and exposes its contents
+        to either the page, a String in 'var', or a Reader in 'varReader'.
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+			<xs:attribute name="url" use="required">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+The URL of the resource to import.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="var">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the exported scoped variable for the
+resource's content. The type of the scoped
+variable is String.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="scope">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Scope for var.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="varReader">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the exported scoped variable for the
+resource's content. The type of the scoped
+variable is Reader.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="context">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the context when accessing a relative
+URL resource that belongs to a foreign
+context.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="charEncoding">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Character encoding of the content at the input
+resource.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="forEach">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+	The basic iteration tag, accepting many different
+        collection types and supporting subsetting and other
+        functionality
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+			<xs:attribute name="items">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Collection of items to iterate over.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="begin">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+If items specified:
+Iteration begins at the item located at the
+specified index. First item of the collection has
+index 0.
+If items not specified:
+Iteration begins with index set at the value
+specified.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="end">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+If items specified:
+Iteration ends at the item located at the
+specified index (inclusive).
+If items not specified:
+Iteration ends when index reaches the value
+specified.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="step">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Iteration will only process every step items of
+the collection, starting with the first one.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="var">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the exported scoped variable for the
+current item of the iteration. This scoped
+variable has nested visibility. Its type depends
+on the object of the underlying collection.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="varStatus">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the exported scoped variable for the
+status of the iteration. Object exported is of type
+javax.servlet.jsp.jstl.core.LoopTagStatus. This scoped variable has nested
+visibility.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="forTokens">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+	Iterates over tokens, separated by the supplied delimeters
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+			<xs:attribute name="items" use="required">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+String of tokens to iterate over.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="delims" use="required">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+The set of delimiters (the characters that
+separate the tokens in the string).
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="begin">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Iteration begins at the token located at the
+specified index. First token has index 0.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="end">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Iteration ends at the token located at the
+specified index (inclusive).
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="step">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Iteration will only process every step tokens
+of the string, starting with the first one.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="var">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the exported scoped variable for the
+current item of the iteration. This scoped
+variable has nested visibility.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="varStatus">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the exported scoped variable for the
+status of the iteration. Object exported is of
+type
+javax.servlet.jsp.jstl.core.LoopTag
+Status. This scoped variable has nested
+visibility.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="out">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+        Like <%= ... >, but for expressions.
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+			<xs:attribute name="value" use="required">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Expression to be evaluated.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="default">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Default value if the resulting value is null.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="escapeXml">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Determines whether characters <,>,&,'," in the
+resulting string should be converted to their
+corresponding character entity codes. Default value is
+true.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="otherwise">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+        Subtag of <choose> that follows <when> tags
+        and runs only if all of the prior conditions evaluated to
+        'false'
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="param">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+        Adds a parameter to a containing 'import' tag's URL.
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+			<xs:attribute name="name" use="required">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the query string parameter.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="value">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Value of the parameter.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="redirect">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+        Redirects to a new URL.
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+			<xs:attribute name="url">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+The URL of the resource to redirect to.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="context">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the context when redirecting to a relative URL
+resource that belongs to a foreign context.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="remove">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+        Removes a scoped variable (from a particular scope, if specified).
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: empty</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="var" use="required">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the scoped variable to be removed.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="scope">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Scope for var.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="set">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+        Sets the result of an expression evaluation in a 'scope'
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+			<xs:attribute name="var">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the exported scoped variable to hold the value
+specified in the action. The type of the scoped variable is
+whatever type the value expression evaluates to.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="value">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Expression to be evaluated.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="target">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Target object whose property will be set. Must evaluate to
+a JavaBeans object with setter property property, or to a
+java.util.Map object.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="property">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the property to be set in the target object.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="scope">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Scope for var.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="url">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+        Creates a URL with optional query parameters.
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+			<xs:attribute name="var">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the exported scoped variable for the
+processed url. The type of the scoped variable is
+String.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="scope">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Scope for var.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="value">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+URL to be processed.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="context">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+Name of the context when specifying a relative URL
+resource that belongs to a foreign context.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="when">
+		<xs:annotation>
+			<xs:documentation><![CDATA[
+	Subtag of <choose> that includes its body if its
+	condition evalutes to 'true'
+    ]]></xs:documentation>
+			<xs:documentation>tag-class: </xs:documentation>
+			<xs:documentation>body-content: JSP</xs:documentation>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:any processContents="lax" />
+			</xs:choice>
+			<xs:attribute name="test" use="required">
+				<xs:annotation>
+					<xs:documentation><![CDATA[
+The test condition that determines whether or not the
+body content should be processed.
+        ]]></xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
